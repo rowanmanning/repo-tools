@@ -1,0 +1,9 @@
+{
+	"bump-minor-pre-major": true,
+	"bump-patch-for-minor-pre-major": true,
+	"plugins": ["node-workspace"],
+	"release-type": "node",
+	"packages": {
+		"packages/node-versions": {}
+	}
+}

@@ -1,0 +1,23 @@
+{
+  "name": "@rowanmanning/node-versions",
+  "version": "0.0.0",
+  "description": "Get the Node.js versions that a repo says it supports",
+  "keywords": [],
+  "author": "Rowan Manning (https://rowanmanning.com/)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rowanmanning/repo-tools.git",
+    "directory": "packages/node-versions"
+  },
+  "homepage": "https://github.com/rowanmanning/repo-tools/tree/main/packages/node-versions#readme",
+  "bugs": "https://github.com/rowanmanning/repo-tools/issues",
+  "license": "MIT",
+  "engines": {
+    "node": "18.x || 20.x || 22.x"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "@npmcli/package-json": "^5.2.0",
+    "semver": "^7.6.2"
+  }
+}

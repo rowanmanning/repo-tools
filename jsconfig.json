@@ -1,0 +1,20 @@
+{
+	"compilerOptions": {
+		"allowJs": true,
+		"checkJs": true,
+		"declaration": true,
+		"declarationMap": true,
+		"maxNodeModuleJsDepth": 0,
+		"module": "commonjs",
+		"removeComments": true,
+		"resolveJsonModule": true,
+		"strictBindCallApply": true,
+		"strictFunctionTypes": true,
+		"strictNullChecks": true,
+		"strictPropertyInitialization": true,
+		"target": "ES2023",
+		"useUnknownInCatchVariables": true
+	},
+	"exclude": ["coverage", "node_modules", "test"],
+	"include": ["**/*.js"]
+}

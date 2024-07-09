@@ -1,0 +1,27 @@
+version: 2
+updates:
+
+  # Keep GitHub actions up to date
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "chore:"
+
+  # Keep npm dependencies up to date
+  - package-ecosystem: "npm"
+    open-pull-requests-limit: 10
+    directories:
+      - "/"
+    schedule:
+      interval: "daily"
+    commit-message:
+      prefix: "fix:"
+      prefix-development: "chore:"
+    groups:
+      development-dependencies:
+        dependency-type: "development"
+        update-types:
+          - "minor"
+          - "patch"

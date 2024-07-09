@@ -1,0 +1,48 @@
+{
+  "name": "@rowanmanning/repo-tools",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Various libraries to help with managing repos",
+  "author": "Rowan Manning (https://rowanmanning.com/)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rowanmanning/repo-tools.git"
+  },
+  "homepage": "https://github.com/rowanmanning/repo-tools",
+  "bugs": "https://github.com/rowanmanning/repo-tools/issues",
+  "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ],
+  "engines": {
+    "node": "18.x || 20.x || 22.x"
+  },
+  "scripts": {
+    "build": "npm run build:types",
+    "build:types": "tsc --noEmit false --emitDeclarationOnly --project ./jsconfig.json",
+    "prepare": "husky",
+    "test": "nyc node --test",
+    "verify": "npm run verify:biome && npm run verify:types",
+    "verify:biome": "biome check",
+    "verify:types": "tsc --noEmit --project ./jsconfig.json"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "@rowanmanning/biome-config": "^1.3.0",
+    "@types/node": "^20.14.9",
+    "husky": "^9.0.11",
+    "nyc": "^17.0.0",
+    "typescript": "^5.5.3"
+  },
+  "nyc": {
+    "eager": true,
+    "reporter": [
+      "html",
+      "text"
+    ]
+  },
+  "volta": {
+    "node": "20.15.1"
+  }
+}
