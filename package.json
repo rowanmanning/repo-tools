@@ -20,7 +20,7 @@
   "scripts": {
     "build": "npm run build:types",
     "build:types": "tsc --noEmit false --emitDeclarationOnly --project ./jsconfig.json",
-    "prepare": "husky",
+    "prepare": "husky || true",
     "test": "nyc node --test",
     "verify": "npm run verify:biome && npm run verify:types",
     "verify:biome": "biome check",
