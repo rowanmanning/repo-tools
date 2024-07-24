@@ -28,6 +28,13 @@ describe('@rowanmanning/node-versions', () => {
 
 	afterEach(() => quibble.reset());
 
+	describe('.nodeVersions', () => {
+		it('is a read-only copy of the versions.json file', () => {
+			assert.deepEqual(subject.nodeVersions, nodeVersions);
+			assert.ok(Object.isFrozen(subject.nodeVersions));
+		});
+	});
+
 	describe('.getEnginesNodeVersions(engines)', () => {
 		let returnedValue;
 

@@ -9,6 +9,8 @@ const semver = require('semver');
  * @property {boolean} [majorsOnly]
  */
 
+exports.nodeVersions = Object.freeze(possibleNodeVersions);
+
 /**
  * @param {string} engines
  * @param {Options} [options]
