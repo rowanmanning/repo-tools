@@ -1,6 +1,6 @@
 {
   "name": "@rowanmanning/node-versions",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Get the Node.js versions that a repo says it supports",
   "keywords": [],
   "author": "Rowan Manning (https://rowanmanning.com/)",
