@@ -6,7 +6,7 @@
   "author": "Rowan Manning (https://rowanmanning.com/)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/rowanmanning/repo-tools.git"
+    "url": "git+https://github.com/rowanmanning/repo-tools.git"
   },
   "homepage": "https://github.com/rowanmanning/repo-tools",
   "bugs": "https://github.com/rowanmanning/repo-tools/issues",
@@ -18,7 +18,7 @@
     "node": "18.x || 20.x || 22.x"
   },
   "scripts": {
-    "build": "npm run build:types",
+    "build": "npm run build:types && npm run build:workspaces",
     "build:types": "tsc --noEmit false --emitDeclarationOnly --project ./jsconfig.json",
     "prepare": "husky || true",
     "test": "nyc node --test",
@@ -33,6 +33,7 @@
     "@types/node": "^20.14.9",
     "husky": "^9.0.11",
     "nyc": "^17.0.0",
+    "quibble": "^0.9.2",
     "typescript": "^5.5.3"
   },
   "nyc": {

@@ -6,7 +6,7 @@
   "author": "Rowan Manning (https://rowanmanning.com/)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/rowanmanning/repo-tools.git",
+    "url": "git+https://github.com/rowanmanning/repo-tools.git",
     "directory": "packages/node-versions"
   },
   "homepage": "https://github.com/rowanmanning/repo-tools/tree/main/packages/node-versions#readme",
@@ -14,6 +14,10 @@
   "license": "MIT",
   "engines": {
     "node": "18.x || 20.x || 22.x"
+  },
+  "scripts": {
+    "fetch-versions": "node ./scripts/fetch-node-versions.js",
+    "postinstall": "node ./scripts/fetch-node-versions.js || true"
   },
   "main": "index.js",
   "dependencies": {

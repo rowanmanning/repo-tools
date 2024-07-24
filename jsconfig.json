@@ -15,6 +15,6 @@
 		"target": "ES2023",
 		"useUnknownInCatchVariables": true
 	},
-	"exclude": ["coverage", "node_modules", "test"],
+	"exclude": ["coverage", "node_modules", "**/test"],
 	"include": ["**/*.js"]
 }
