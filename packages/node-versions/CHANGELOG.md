@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/rowanmanning/repo-tools/compare/node-versions-v1.0.0...node-versions-v1.0.1) (2024-07-24)
+
+
+### Bug Fixes
+
+* update the table of contents ([6f8bf53](https://github.com/rowanmanning/repo-tools/commit/6f8bf531cf148e3b4d57f1aae624653f4bc4ca7b))
+
 ## 1.0.0 (2024-07-24)
 
 
