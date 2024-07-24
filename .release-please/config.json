@@ -3,6 +3,7 @@
 	"bump-patch-for-minor-pre-major": true,
 	"plugins": ["node-workspace"],
 	"release-type": "node",
+	"separate-pull-requests": false,
 	"packages": {
 		"packages/node-versions": {}
 	}
