@@ -5,6 +5,9 @@ Get the Node.js versions that a repo says it supports.
 
 * [Requirements](#requirements)
 * [Usage](#usage)
+  * [`nodeVersions`](#nodeversions)
+  * [`getPackageNodeVersions()`](#getpackagenodeversions)
+  * [`getEnginesNodeVersions()`](#getenginesnodeversions)
 * [Contributing](#contributing)
 * [License](#license)
 
