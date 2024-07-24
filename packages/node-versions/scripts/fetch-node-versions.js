@@ -1,15 +1,13 @@
 'use strict';
 
-const { mkdir, writeFile } = require('node:fs/promises');
+const { writeFile } = require('node:fs/promises');
 const { resolve: resolvePath } = require('node:path');
 const { fetchNodeVersions } = require('../lib/fetch-node-versions');
 
-const directoryPath = resolvePath(__dirname, '..', 'data');
-const filePath = resolvePath(directoryPath, 'versions.json');
+const filePath = resolvePath(__dirname, '..', 'data', 'versions.json');
 
 async function runScript() {
 	const versions = await fetchNodeVersions();
-	await mkdir(directoryPath, { recursive: true });
 	await writeFile(filePath, `${JSON.stringify(versions, null, '\t')}\n`);
 }
 
