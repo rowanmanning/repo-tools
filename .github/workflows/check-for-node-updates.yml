@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  schedule:
+    - cron: 7 13 * * *
+  workflow_dispatch:
+
+env:
+  GH_TOKEN: ${{ secrets.BOT_TOKEN }}
+
+jobs:
+  check-for-node-updates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.BOT_TOKEN }}
+      - uses: actions/setup-node@v4
+        with:
+          cache: npm
+          node-version: 20
+          registry-url: https://registry.npmjs.org
+      - run: npm ci
+      - run: npm run -w packages/node-versions fetch-versions
+      - id: diff
+        run: if [[ $(git --no-pager diff -- packages/node-versions/data) ]]; then echo "changes=true" >> "$GITHUB_OUTPUT"; fi
+      - if: steps.diff.outputs.changes
+        run: |
+          git config --global user.name "rowanbot"
+          git config --global user.email "rowanbot@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${{ secrets.BOT_TOKEN }}@github.com/$GITHUB_REPOSITORY
+          git checkout -b rowbot/update-node-versions
+          git add packages/node-versions/data
+          git commit -m "fix: update available Node.js versions"
+          git push -fu origin rowbot/update-node-versions
+          gh pr create --fill
