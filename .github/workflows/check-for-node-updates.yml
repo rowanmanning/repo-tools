@@ -33,4 +33,4 @@ jobs:
           git add packages/node-versions/data
           git commit -m "fix: update available Node.js versions"
           git push -fu origin rowbot/update-node-versions
-          gh pr create --fill
+          gh pr create --fill || echo "PR already exists, nothing to do"
