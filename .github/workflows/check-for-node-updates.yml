@@ -1,4 +1,4 @@
-name: CI
+name: Check for Node.js Updates
 
 on:
   schedule:
