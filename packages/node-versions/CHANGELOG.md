@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3](https://github.com/rowanmanning/repo-tools/compare/node-versions-v1.0.2...node-versions-v1.0.3) (2024-08-23)
+
+
+### Bug Fixes
+
+* update available Node.js versions ([f08f793](https://github.com/rowanmanning/repo-tools/commit/f08f793b001d68d3b317b2388046b979c43192f8))
+
 ## [1.0.2](https://github.com/rowanmanning/repo-tools/compare/node-versions-v1.0.1...node-versions-v1.0.2) (2024-08-07)
 
 
