@@ -22,9 +22,7 @@
   "main": "index.js",
   "types": "index.d.ts",
   "dependencies": {
+    "@rowanmanning/package-json": "^1.0.0",
     "semver": "^7.6.3"
-  },
-  "devDependencies": {
-    "@rowanmanning/package-json": "^1.0.0"
   }
 }
