@@ -1,3 +1,5 @@
+import type { AnyPackageLock, PackageJson } from '@rowanmanning/package-json';
+
 declare module '@rowanmanning/node-versions' {
 	export interface Options {
 		majorsOnly?: boolean | undefined;
@@ -11,7 +13,7 @@ declare module '@rowanmanning/node-versions' {
 	): string[];
 
 	export function getPackageNodeVersions(
-		path: string,
+		packageJson: Partial<PackageJson> | Partial<AnyPackageLock>,
 		options?: Options | undefined
-	): Promise<string[]>;
+	): string[];
 }

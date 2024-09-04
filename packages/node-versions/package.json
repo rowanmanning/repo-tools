@@ -22,7 +22,9 @@
   "main": "index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "@npmcli/package-json": "^5.2.0",
     "semver": "^7.6.3"
+  },
+  "devDependencies": {
+    "@rowanmanning/package-json": "^0.0.0"
   }
 }

@@ -5,13 +5,11 @@ const { afterEach, beforeEach, describe, it, mock } = require('node:test');
 const quibble = require('quibble');
 
 describe('@rowanmanning/node-versions', () => {
-	let loadPackage;
 	let nodeVersions;
 	let semver;
 	let subject;
 
 	beforeEach(() => {
-		loadPackage = mock.fn();
 		nodeVersions = ['3.0.0', '2.1.0', '2.0.1', '2.0.0', '1.1.0', '1.0.0'];
 		semver = {
 			validRange: mock.fn(),
@@ -19,7 +17,6 @@ describe('@rowanmanning/node-versions', () => {
 			major: mock.fn()
 		};
 
-		quibble('../../lib/load-package', { loadPackage });
 		quibble('../../data/versions.json', nodeVersions);
 		quibble('semver', semver);
 
@@ -82,7 +79,7 @@ describe('@rowanmanning/node-versions', () => {
 		});
 
 		describe('when the engines string is not a string', () => {
-			beforeEach(async () => {
+			beforeEach(() => {
 				semver.validRange.mock.resetCalls();
 				semver.satisfies.mock.resetCalls();
 				returnedValue = subject.getEnginesNodeVersions(123);
@@ -99,7 +96,7 @@ describe('@rowanmanning/node-versions', () => {
 		});
 
 		describe('when the engines string is not a valid semver range', () => {
-			beforeEach(async () => {
+			beforeEach(() => {
 				semver.satisfies.mock.resetCalls();
 				semver.validRange.mock.mockImplementation(() => false);
 				returnedValue = subject.getEnginesNodeVersions('mock-engines');
@@ -151,21 +148,18 @@ describe('@rowanmanning/node-versions', () => {
 	});
 
 	describe('.getPackageNodeVersions(path, options)', () => {
-		let resolvedValue;
+		let returnedValue;
 
-		beforeEach(async () => {
+		beforeEach(() => {
 			subject.getEnginesNodeVersions = mock.fn(() => 'mock-engines-node-versions');
-			loadPackage.mock.mockImplementation(() => ({
-				engines: {
-					node: 'mock-engines'
-				}
-			}));
-			resolvedValue = await subject.getPackageNodeVersions('mock-path', 'mock-options');
-		});
-
-		it('loads the package from the given path', () => {
-			assert.equal(loadPackage.mock.callCount(), 1);
-			assert.deepEqual(loadPackage.mock.calls.at(0).arguments, ['mock-path']);
+			returnedValue = subject.getPackageNodeVersions(
+				{
+					engines: {
+						node: 'mock-engines'
+					}
+				},
+				'mock-options'
+			);
 		});
 
 		it('gets the Node.js versions for the package engines.node property, passing on options', () => {
@@ -177,14 +171,40 @@ describe('@rowanmanning/node-versions', () => {
 		});
 
 		it('resolves with the result of getting the engines Node.js versions', () => {
-			assert.deepEqual(resolvedValue, 'mock-engines-node-versions');
+			assert.deepEqual(returnedValue, 'mock-engines-node-versions');
+		});
+
+		describe('when the package has a lockfileVersion greater than 1', () => {
+			beforeEach(() => {
+				subject.getEnginesNodeVersions.mock.resetCalls();
+				returnedValue = subject.getPackageNodeVersions(
+					{
+						lockfileVersion: 2,
+						packages: {
+							'': {
+								engines: {
+									node: 'mock-engines'
+								}
+							}
+						}
+					},
+					'mock-options'
+				);
+			});
+
+			it('gets the Node.js versions for the package packages."".engines.node property, passing on options', () => {
+				assert.equal(subject.getEnginesNodeVersions.mock.callCount(), 1);
+				assert.deepEqual(subject.getEnginesNodeVersions.mock.calls.at(0).arguments, [
+					'mock-engines',
+					'mock-options'
+				]);
+			});
 		});
 
 		describe('when the package does not have an engines property', () => {
-			beforeEach(async () => {
+			beforeEach(() => {
 				subject.getEnginesNodeVersions.mock.resetCalls();
-				loadPackage.mock.mockImplementation(() => ({}));
-				resolvedValue = await subject.getPackageNodeVersions('mock-engines');
+				returnedValue = subject.getPackageNodeVersions({});
 			});
 
 			it('does not get the Node.js versions', () => {
@@ -192,17 +212,16 @@ describe('@rowanmanning/node-versions', () => {
 			});
 
 			it('resolves with an empty array', () => {
-				assert.deepEqual(resolvedValue, []);
+				assert.deepEqual(returnedValue, []);
 			});
 		});
 
 		describe('when the package does not have an engines.node property', () => {
-			beforeEach(async () => {
+			beforeEach(() => {
 				subject.getEnginesNodeVersions.mock.resetCalls();
-				loadPackage.mock.mockImplementation(() => ({
+				returnedValue = subject.getPackageNodeVersions({
 					engines: { npm: 'mock-npm-engines' }
-				}));
-				resolvedValue = await subject.getPackageNodeVersions('mock-engines');
+				});
 			});
 
 			it('does not get the Node.js versions', () => {
@@ -210,17 +229,16 @@ describe('@rowanmanning/node-versions', () => {
 			});
 
 			it('resolves with an empty array', () => {
-				assert.deepEqual(resolvedValue, []);
+				assert.deepEqual(returnedValue, []);
 			});
 		});
 
 		describe('when the package engines.node property is not a string', () => {
-			beforeEach(async () => {
+			beforeEach(() => {
 				subject.getEnginesNodeVersions.mock.resetCalls();
-				loadPackage.mock.mockImplementation(() => ({
+				returnedValue = subject.getPackageNodeVersions({
 					engines: { node: 123 }
-				}));
-				resolvedValue = await subject.getPackageNodeVersions('mock-engines');
+				});
 			});
 
 			it('does not get the Node.js versions', () => {
@@ -228,7 +246,7 @@ describe('@rowanmanning/node-versions', () => {
 			});
 
 			it('resolves with an empty array', () => {
-				assert.deepEqual(resolvedValue, []);
+				assert.deepEqual(returnedValue, []);
 			});
 		});
 	});

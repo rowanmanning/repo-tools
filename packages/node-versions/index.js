@@ -1,6 +1,5 @@
 'use strict';
 
-const { loadPackage } = require('./lib/load-package');
 const possibleNodeVersions = require('./data/versions.json');
 const semver = require('semver');
 
@@ -38,10 +37,19 @@ exports.getEnginesNodeVersions = function getEnginesNodeVersions(engines, option
 };
 
 /** @type {nodeVersions['getPackageNodeVersions']} */
-exports.getPackageNodeVersions = async function getPackageNodeVersions(path, options) {
-	const packageJson = await loadPackage(path);
-	if (typeof packageJson.engines?.node !== 'string') {
+exports.getPackageNodeVersions = function getPackageNodeVersions(packageJson, options) {
+	/** @type {any} */
+	let engines;
+
+	// We can only extract engines data from a v2+ lockfile
+	if (typeof packageJson?.lockfileVersion === 'number' && packageJson.lockfileVersion > 1) {
+		engines = packageJson?.packages?.['']?.engines?.node;
+	} else {
+		engines = packageJson?.engines?.node;
+	}
+
+	if (typeof engines !== 'string') {
 		return [];
 	}
-	return exports.getEnginesNodeVersions(packageJson.engines.node, options);
+	return exports.getEnginesNodeVersions(engines, options);
 };

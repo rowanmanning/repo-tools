@@ -46,20 +46,20 @@ An array of strings (`string[]`) that contains every released versions of Node.j
 A function to list the Node.js versions that a `package.json` file claims to support. This function has the following signature:
 
 ```ts
-(path: string, options?: object) => Promise<string[]>
+(packageJson: PackageJson, options?: object) => string[]
 ```
 
-The `path` argument is required and must be an accessible folder that contains a `package.json` file _or_ the path to a `package.json` file itself.
+`PackageJson` must be a JavaScript object that is a valid `package.json` or `package-lock.json` file. We recommend using [@rowanmanning/package-json](../package-json#readme) or [@npmcli/package-json](https://github.com/npm/package-json#readme).
 
 The `options` argument is optional and can be used to change the way the method works. The following options are available:
 
   * `majorsOnly`: A `boolean` option defaulting to `false`. If this is set to `true` then the returned versions will have any minor/patch versions removed. E.g. `20.0.0` becomes `20`
 
 ```js
-const versions = await getPackageNodeVersions('/path/to/my/repo');
+const versions = getPackageNodeVersions(require('./package.json'));
 // ["v22.5.1", "v20.16.0", "v18.20.4", ...]
 
-const versions = await getPackageNodeVersions('/path/to/my/repo', { majorsOnly: true });
+const versions = await getPackageNodeVersions(require('./package.json'), { majorsOnly: true });
 // ["22", "20", "18", ...]
 ```
 
