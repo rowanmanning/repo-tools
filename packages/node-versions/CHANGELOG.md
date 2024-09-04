@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.5](https://github.com/rowanmanning/repo-tools/compare/node-versions-v1.0.4...node-versions-v1.0.5) (2024-09-04)
+
+
+### Bug Fixes
+
+* update available Node.js versions ([f1ef464](https://github.com/rowanmanning/repo-tools/commit/f1ef4646cc1463a698f6aa2234fb33e21d723ca6))
+
 ## [1.0.4](https://github.com/rowanmanning/repo-tools/compare/node-versions-v1.0.3...node-versions-v1.0.4) (2024-08-23)
 
 
