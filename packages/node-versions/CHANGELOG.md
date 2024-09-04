@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/rowanmanning/repo-tools/compare/node-versions-v2.0.0...node-versions-v2.0.1) (2024-09-04)
+
+
+### Bug Fixes
+
+* include package-json as a prod dependency ([0cfaeb1](https://github.com/rowanmanning/repo-tools/commit/0cfaeb1012ee0ab35dc20e896c0840e7bd72aa70))
+
 ## [2.0.0](https://github.com/rowanmanning/repo-tools/compare/node-versions-v1.0.5...node-versions-v2.0.0) (2024-09-04)
 
 
