@@ -5,17 +5,18 @@ const possibleNodeVersions = require('./data/versions.json');
 const semver = require('semver');
 
 /**
+ * @import nodeVersions from '@rowanmanning/node-versions'
+ */
+
+/**
  * @typedef {object} Options
  * @property {boolean} [majorsOnly]
  */
 
+/** @type {nodeVersions['nodeVersions']} */
 exports.nodeVersions = Object.freeze(possibleNodeVersions);
 
-/**
- * @param {string} engines
- * @param {Options} [options]
- * @returns {string[]}
- */
+/** @type {nodeVersions['getEnginesNodeVersions']} */
 exports.getEnginesNodeVersions = function getEnginesNodeVersions(engines, options = {}) {
 	if (typeof engines !== 'string' || !semver.validRange(engines)) {
 		return [];
@@ -36,11 +37,7 @@ exports.getEnginesNodeVersions = function getEnginesNodeVersions(engines, option
 	return supportedNodeVersions;
 };
 
-/**
- * @param {string} path
- * @param {Options} [options]
- * @returns {Promise<string[]>}
- */
+/** @type {nodeVersions['getPackageNodeVersions']} */
 exports.getPackageNodeVersions = async function getPackageNodeVersions(path, options) {
 	const packageJson = await loadPackage(path);
 	if (typeof packageJson.engines?.node !== 'string') {

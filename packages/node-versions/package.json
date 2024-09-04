@@ -20,6 +20,7 @@
     "postinstall": "node ./scripts/fetch-node-versions.js || true"
   },
   "main": "index.js",
+  "types": "index.d.ts",
   "dependencies": {
     "@npmcli/package-json": "^5.2.0",
     "semver": "^7.6.3"

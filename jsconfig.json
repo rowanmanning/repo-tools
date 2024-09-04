@@ -16,5 +16,5 @@
 		"useUnknownInCatchVariables": true
 	},
 	"exclude": ["coverage", "node_modules", "**/test"],
-	"include": ["**/*.js"]
+	"include": ["**/*.js", "**/*.d.ts"]
 }
