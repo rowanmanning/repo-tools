@@ -1,5 +1,23 @@
 # Changelog
 
+## [2.0.0](https://github.com/rowanmanning/repo-tools/compare/node-versions-v1.0.5...node-versions-v2.0.0) (2024-09-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* move away from loading package files
+
+### Code Refactoring
+
+* move away from loading package files ([332be27](https://github.com/rowanmanning/repo-tools/commit/332be2739913c19231ce4eb99ecf091027d993b6))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * @rowanmanning/package-json bumped from ^0.0.0 to ^1.0.0
+
 ## [1.0.5](https://github.com/rowanmanning/repo-tools/compare/node-versions-v1.0.4...node-versions-v1.0.5) (2024-09-04)
 
 

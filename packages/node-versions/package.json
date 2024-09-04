@@ -1,6 +1,6 @@
 {
   "name": "@rowanmanning/node-versions",
-  "version": "1.0.5",
+  "version": "2.0.0",
   "description": "Get the Node.js versions that a repo says it supports",
   "keywords": [],
   "author": "Rowan Manning (https://rowanmanning.com/)",
@@ -25,6 +25,6 @@
     "semver": "^7.6.3"
   },
   "devDependencies": {
-    "@rowanmanning/package-json": "^0.0.0"
+    "@rowanmanning/package-json": "^1.0.0"
   }
 }
