@@ -14,6 +14,7 @@ Each of the libraries can be found in the [`packages` folder](./packages/):
 
   * **[@rowanmanning/node-versions](./packages/node-versions#readme):** Get the Node.js versions that a repo says it supports
 
+  * **[@rowanmanning/package-json](./packages/package-json#readme):** Load and parse `package.json` and `package-lock.json` files
 
 ## Contributing
 
