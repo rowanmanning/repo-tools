@@ -1,5 +1,6 @@
 'use strict';
 
+const { getRepoContent } = require('./github');
 const { join: joinPath } = require('node:path');
 const { readFile } = require('node:fs/promises');
 
@@ -74,4 +75,10 @@ exports.fromDirectory = async function fromDirectory(path) {
 		throw new TypeError('Invalid argument: path must be a string');
 	}
 	return await exports.fromFile(joinPath(path, 'package.json'));
+};
+
+/** @type {packageJson['fromGitHubRepo']} */
+exports.fromGitHubRepo = async function fromGitHubRepo(options) {
+	const optionsWithPath = Object.assign({ path: 'package.json' }, options);
+	return exports.fromString(await getRepoContent(optionsWithPath));
 };

@@ -1,5 +1,6 @@
 'use strict';
 
+const { getRepoContent } = require('./github');
 const { join: joinPath } = require('node:path');
 const { readFile } = require('node:fs/promises');
 
@@ -84,4 +85,10 @@ exports.fromDirectory = async function fromDirectory(path) {
 		throw new TypeError('Invalid argument: path must be a string');
 	}
 	return await exports.fromFile(joinPath(path, 'package-lock.json'));
+};
+
+/** @type {packageLock['fromGitHubRepo']} */
+exports.fromGitHubRepo = async function fromGitHubRepo(options) {
+	const optionsWithPath = Object.assign({ path: 'package-lock.json' }, options);
+	return exports.fromString(await getRepoContent(optionsWithPath));
 };
