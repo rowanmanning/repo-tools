@@ -7,11 +7,6 @@ const semver = require('semver');
  * @import nodeVersions from '@rowanmanning/node-versions'
  */
 
-/**
- * @typedef {object} Options
- * @property {boolean} [majorsOnly]
- */
-
 /** @type {nodeVersions['nodeVersions']} */
 exports.nodeVersions = Object.freeze(possibleNodeVersions);
 
