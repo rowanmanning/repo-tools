@@ -1,6 +1,7 @@
 declare module '@rowanmanning/package-json' {
 	export interface PackageJson {
 		[key: string]: unknown;
+		lockfileVersion: never;
 		name: string;
 		version: string;
 	}
