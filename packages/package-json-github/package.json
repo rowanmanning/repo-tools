@@ -1,6 +1,6 @@
 {
   "name": "@rowanmanning/package-json-github",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Load and parse package.json and package-lock.json files from GitHub repositories",
   "keywords": [],
   "author": "Rowan Manning (https://rowanmanning.com/)",
