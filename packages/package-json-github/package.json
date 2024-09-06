@@ -1,0 +1,23 @@
+{
+  "name": "@rowanmanning/package-json-github",
+  "version": "0.0.0",
+  "description": "Load and parse package.json and package-lock.json files from GitHub repositories",
+  "keywords": [],
+  "author": "Rowan Manning (https://rowanmanning.com/)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rowanmanning/repo-tools.git",
+    "directory": "packages/package-json-github"
+  },
+  "homepage": "https://github.com/rowanmanning/repo-tools/tree/main/packages/package-json-github#readme",
+  "bugs": "https://github.com/rowanmanning/repo-tools/issues",
+  "license": "MIT",
+  "engines": {
+    "node": "18.x || 20.x || 22.x"
+  },
+  "main": "index.js",
+  "types": "index.d.ts",
+  "dependencies": {
+    "@rowanmanning/package-json": "^1.0.0"
+  }
+}
