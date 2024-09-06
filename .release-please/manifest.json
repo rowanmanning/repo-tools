@@ -1,1 +1,4 @@
-{"packages/node-versions":"2.0.1","packages/package-json":"1.0.0"}
+{
+	"packages/node-versions": "2.0.1",
+	"packages/package-json": "1.0.0"
+}
