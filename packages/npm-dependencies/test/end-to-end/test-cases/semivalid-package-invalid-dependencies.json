@@ -1,0 +1,23 @@
+{
+	"description": "Semi-valid package.json file with some dependency versions not as strings",
+	"input": {
+		"name": "fixture",
+		"version": "0.0.0",
+		"dependencies": {
+			"mock-dependency-1": "^1.2.3",
+			"mock-dependency-2": 2.3,
+			"mock-dependency-3": [3, 4, 5],
+			"mock-dependency-4": { "major": 4, "minor": 5, "patch": 6 }
+		}
+	},
+	"expectedResult": [
+		{
+			"name": "mock-dependency-1",
+			"version": "^1.2.3",
+			"isBundled": false,
+			"isDev": false,
+			"isOptional": false,
+			"isPeer": false
+		}
+	]
+}

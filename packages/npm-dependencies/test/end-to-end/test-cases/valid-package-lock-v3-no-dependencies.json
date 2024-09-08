@@ -1,0 +1,15 @@
+{
+	"description": "Valid v3 package-lock.json file with no dependencies",
+	"input": {
+		"lockfileVersion": 3,
+		"name": "fixture",
+		"version": "0.0.0",
+		"packages": {
+			"": {
+				"name": "workspace",
+				"version": "0.0.0"
+			}
+		}
+	},
+	"expectedResult": []
+}

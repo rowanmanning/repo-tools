@@ -1,0 +1,172 @@
+{
+	"description": "Valid package.json file with all dependency types",
+	"input": {
+		"name": "fixture",
+		"version": "0.0.0",
+		"dependencies": {
+			"mock-dependency-1": "^1.2.3",
+			"mock-dependency-2": "^2.3.4",
+			"mock-dependency-3": "^3.4.5",
+			"mock-dependency-4": "^4.5.6"
+		},
+		"devDependencies": {
+			"mock-dependency-5": "^1.2.3",
+			"mock-dependency-6": "^2.3.4",
+			"mock-dependency-7": "^3.4.5",
+			"mock-dependency-8": "^4.5.6"
+		},
+		"optionalDependencies": {
+			"mock-dependency-9": "^1.2.3",
+			"mock-dependency-10": "^2.3.4",
+			"mock-dependency-11": "^3.4.5",
+			"mock-dependency-12": "^4.5.6"
+		},
+		"peerDependencies": {
+			"mock-dependency-13": "^1.2.3",
+			"mock-dependency-14": "^2.3.4",
+			"mock-dependency-15": "^3.4.5",
+			"mock-dependency-16": "^4.5.6"
+		},
+		"peerDependenciesMeta": {
+			"mock-dependency-15": {
+				"optional": true
+			}
+		},
+		"bundleDependencies": [
+			"mock-dependency-4",
+			"mock-dependency-8",
+			"mock-dependency-12",
+			"mock-dependency-16"
+		]
+	},
+	"expectedResult": [
+		{
+			"name": "mock-dependency-1",
+			"version": "^1.2.3",
+			"isBundled": false,
+			"isDev": false,
+			"isOptional": false,
+			"isPeer": false
+		},
+		{
+			"name": "mock-dependency-2",
+			"version": "^2.3.4",
+			"isBundled": false,
+			"isDev": false,
+			"isOptional": false,
+			"isPeer": false
+		},
+		{
+			"name": "mock-dependency-3",
+			"version": "^3.4.5",
+			"isBundled": false,
+			"isDev": false,
+			"isOptional": false,
+			"isPeer": false
+		},
+		{
+			"name": "mock-dependency-4",
+			"version": "^4.5.6",
+			"isBundled": true,
+			"isDev": false,
+			"isOptional": false,
+			"isPeer": false
+		},
+		{
+			"name": "mock-dependency-5",
+			"version": "^1.2.3",
+			"isBundled": false,
+			"isDev": true,
+			"isOptional": false,
+			"isPeer": false
+		},
+		{
+			"name": "mock-dependency-6",
+			"version": "^2.3.4",
+			"isBundled": false,
+			"isDev": true,
+			"isOptional": false,
+			"isPeer": false
+		},
+		{
+			"name": "mock-dependency-7",
+			"version": "^3.4.5",
+			"isBundled": false,
+			"isDev": true,
+			"isOptional": false,
+			"isPeer": false
+		},
+		{
+			"name": "mock-dependency-8",
+			"version": "^4.5.6",
+			"isBundled": true,
+			"isDev": true,
+			"isOptional": false,
+			"isPeer": false
+		},
+		{
+			"name": "mock-dependency-9",
+			"version": "^1.2.3",
+			"isBundled": false,
+			"isDev": false,
+			"isOptional": true,
+			"isPeer": false
+		},
+		{
+			"name": "mock-dependency-10",
+			"version": "^2.3.4",
+			"isBundled": false,
+			"isDev": false,
+			"isOptional": true,
+			"isPeer": false
+		},
+		{
+			"name": "mock-dependency-11",
+			"version": "^3.4.5",
+			"isBundled": false,
+			"isDev": false,
+			"isOptional": true,
+			"isPeer": false
+		},
+		{
+			"name": "mock-dependency-12",
+			"version": "^4.5.6",
+			"isBundled": true,
+			"isDev": false,
+			"isOptional": true,
+			"isPeer": false
+		},
+		{
+			"name": "mock-dependency-13",
+			"version": "^1.2.3",
+			"isBundled": false,
+			"isDev": false,
+			"isOptional": false,
+			"isPeer": true
+		},
+		{
+			"name": "mock-dependency-14",
+			"version": "^2.3.4",
+			"isBundled": false,
+			"isDev": false,
+			"isOptional": false,
+			"isPeer": true
+		},
+		{
+			"name": "mock-dependency-15",
+			"version": "^3.4.5",
+			"isBundled": false,
+			"isDev": false,
+			"isOptional": true,
+			"isPeer": true
+		},
+		{
+			"name": "mock-dependency-16",
+			"version": "^4.5.6",
+			"isBundled": true,
+			"isDev": false,
+			"isOptional": false,
+			"isPeer": true
+		}
+	]
+}

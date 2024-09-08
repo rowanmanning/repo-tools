@@ -1,0 +1,19 @@
+{
+	"description": "Invalid v2 package-lock.json file with no name/version",
+	"input": {
+		"lockfileVersion": 2,
+		"packages": {
+			"": {
+				"name": "workspace",
+				"version": "0.0.0",
+				"dependencies": {
+					"mock-dependency-1": "^1.2.3",
+					"mock-dependency-2": "^2.3.4",
+					"mock-dependency-3": "^3.4.5",
+					"mock-dependency-4": "^4.5.6"
+				}
+			}
+		}
+	},
+	"expectedError": "Package-lock.json name property is not a string"
+}

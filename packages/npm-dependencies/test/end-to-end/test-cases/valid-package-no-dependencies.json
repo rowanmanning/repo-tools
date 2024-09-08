@@ -1,0 +1,8 @@
+{
+	"description": "Valid package.json file with no dependencies",
+	"input": {
+		"name": "fixture",
+		"version": "0.0.0"
+	},
+	"expectedResult": []
+}

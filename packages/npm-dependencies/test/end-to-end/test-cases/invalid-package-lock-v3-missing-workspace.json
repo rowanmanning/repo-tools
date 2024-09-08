@@ -1,0 +1,10 @@
+{
+	"description": "Invalid v3 package-lock.json file with a missing default workspace",
+	"input": {
+		"lockfileVersion": 3,
+		"name": "fixture",
+		"version": "0.0.0",
+		"packages": {}
+	},
+	"expectedResult": []
+}

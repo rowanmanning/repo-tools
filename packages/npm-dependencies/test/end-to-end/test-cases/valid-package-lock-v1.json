@@ -1,0 +1,23 @@
+{
+	"description": "Valid v1 package-lock.json file",
+	"input": {
+		"lockfileVersion": 1,
+		"name": "fixture",
+		"version": "0.0.0",
+		"dependencies": {
+			"mock-dependency-1": {
+				"version": "1.2.3"
+			},
+			"mock-dependency-2": {
+				"version": "2.3.4"
+			},
+			"mock-dependency-3": {
+				"version": "3.4.5"
+			},
+			"mock-dependency-4": {
+				"version": "4.5.6"
+			}
+		}
+	},
+	"expectedError": "Invalid argument: packageJson is a lockfile other than v2 or v3"
+}

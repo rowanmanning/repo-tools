@@ -1,0 +1,60 @@
+{
+	"description": "Semi-valid v2 package-lock.json file with missing node_modules entries",
+	"input": {
+		"lockfileVersion": 2,
+		"name": "fixture",
+		"version": "0.0.0",
+		"packages": {
+			"": {
+				"name": "workspace",
+				"version": "0.0.0",
+				"dependencies": {
+					"mock-dependency-1": "^1.2.3",
+					"mock-dependency-2": "^2.3.4",
+					"mock-dependency-3": "^3.4.5",
+					"mock-dependency-4": "^4.5.6"
+				}
+			},
+			"node_modules/mock-dependency-1": {
+				"version": "1.2.3"
+			},
+			"node_modules/mock-dependency-3": {
+				"version": "3.4.5"
+			}
+		}
+	},
+	"expectedResult": [
+		{
+			"name": "mock-dependency-1",
+			"version": "1.2.3",
+			"isBundled": false,
+			"isDev": false,
+			"isOptional": false,
+			"isPeer": false
+		},
+		{
+			"name": "mock-dependency-2",
+			"version": "^2.3.4",
+			"isBundled": false,
+			"isDev": false,
+			"isOptional": false,
+			"isPeer": false
+		},
+		{
+			"name": "mock-dependency-3",
+			"version": "3.4.5",
+			"isBundled": false,
+			"isDev": false,
+			"isOptional": false,
+			"isPeer": false
+		},
+		{
+			"name": "mock-dependency-4",
+			"version": "^4.5.6",
+			"isBundled": false,
+			"isDev": false,
+			"isOptional": false,
+			"isPeer": false
+		}
+	]
+}
