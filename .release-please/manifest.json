@@ -1,5 +1,5 @@
 {
-	"packages/node-versions": "2.0.1",
-	"packages/package-json": "1.0.0",
-	"packages/package-json-github": "1.0.0"
+	"packages/node-versions": "2.0.2",
+	"packages/package-json": "1.0.1",
+	"packages/package-json-github": "1.0.1"
 }
