@@ -16,6 +16,8 @@ Each of the libraries can be found in the [`packages` folder](./packages/):
 
   * **[@rowanmanning/npm-dependencies](./packages/npm-dependencies#readme):** Get a resolved list of dependencies found in a `package.json` or `package-lock.json` file
 
+  * **[@rowanmanning/npm-workspaces](./packages/npm-workspaces#readme):** Get a list of all the npm workspaces found in a `package-lock.json` file
+
   * **[@rowanmanning/package-json](./packages/package-json#readme):** Load and parse `package.json` and `package-lock.json` files
 
   * **[@rowanmanning/package-json-github](./packages/package-json-github#readme):** Load and parse `package.json` and `package-lock.json` files from GitHub repositories

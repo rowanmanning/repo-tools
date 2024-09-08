@@ -1,0 +1,23 @@
+{
+  "name": "@rowanmanning/npm-workspaces",
+  "version": "0.0.0",
+  "description": "Get a list of all the npm workspaces found in a package lock file",
+  "keywords": [],
+  "author": "Rowan Manning (https://rowanmanning.com/)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rowanmanning/repo-tools.git",
+    "directory": "packages/npm-workspaces"
+  },
+  "homepage": "https://github.com/rowanmanning/repo-tools/tree/main/packages/npm-workspaces#readme",
+  "bugs": "https://github.com/rowanmanning/repo-tools/issues",
+  "license": "MIT",
+  "engines": {
+    "node": "18.x || 20.x || 22.x"
+  },
+  "main": "index.js",
+  "types": "index.d.ts",
+  "dependencies": {
+    "@rowanmanning/package-json": "^1.0.1"
+  }
+}
