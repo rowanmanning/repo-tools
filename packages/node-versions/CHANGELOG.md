@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.0.3](https://github.com/rowanmanning/repo-tools/compare/node-versions-v2.0.2...node-versions-v2.0.3) (2024-09-08)
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @rowanmanning/package-json bumped from ^1.0.1 to ^1.0.2
+
 ## [2.0.2](https://github.com/rowanmanning/repo-tools/compare/node-versions-v2.0.1...node-versions-v2.0.2) (2024-09-08)
 
 

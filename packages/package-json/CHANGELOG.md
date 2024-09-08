@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/rowanmanning/repo-tools/compare/package-json-v1.0.1...package-json-v1.0.2) (2024-09-08)
+
+
+### Bug Fixes
+
+* use any for package properties ([96ec109](https://github.com/rowanmanning/repo-tools/commit/96ec109c5f27b139b1a15da35c0bb575b7bdbb19))
+
 ## [1.0.1](https://github.com/rowanmanning/repo-tools/compare/package-json-v1.0.0...package-json-v1.0.1) (2024-09-08)
 
 

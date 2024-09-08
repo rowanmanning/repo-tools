@@ -1,6 +1,6 @@
 {
   "name": "@rowanmanning/node-versions",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Get the Node.js versions that a repo says it supports",
   "keywords": [],
   "author": "Rowan Manning (https://rowanmanning.com/)",
@@ -22,7 +22,7 @@
   "main": "index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "@rowanmanning/package-json": "^1.0.1",
+    "@rowanmanning/package-json": "^1.0.2",
     "semver": "^7.6.3"
   }
 }
