@@ -1,13 +1,15 @@
 declare module '@rowanmanning/package-json' {
 	export interface PackageJson {
-		[key: string]: unknown;
+		// biome-ignore lint/suspicious/noExplicitAny: this is data we can't control - any is valid here
+		[key: string]: any;
 		lockfileVersion: never;
 		name: string;
 		version: string;
 	}
 
 	interface PackageLock {
-		[key: string]: unknown;
+		// biome-ignore lint/suspicious/noExplicitAny: this is data we can't control - any is valid here
+		[key: string]: any;
 		lockfileVersion: number;
 		name: string;
 		version: string;
