@@ -32,15 +32,15 @@ exports.getEnginesNodeVersions = function getEnginesNodeVersions(engines, option
 };
 
 /** @type {nodeVersions['getPackageNodeVersions']} */
-exports.getPackageNodeVersions = function getPackageNodeVersions(packageJson, options) {
+exports.getPackageNodeVersions = function getPackageNodeVersions(pkg, options) {
 	/** @type {any} */
 	let engines;
 
 	// We can only extract engines data from a v2+ lockfile
-	if (typeof packageJson?.lockfileVersion === 'number' && packageJson.lockfileVersion > 1) {
-		engines = packageJson?.packages?.['']?.engines?.node;
+	if (typeof pkg?.lockfileVersion === 'number' && pkg.lockfileVersion > 1) {
+		engines = pkg?.packages?.['']?.engines?.node;
 	} else {
-		engines = packageJson?.engines?.node;
+		engines = pkg?.engines?.node;
 	}
 
 	if (typeof engines !== 'string') {

@@ -8,22 +8,22 @@ const { readFile } = require('node:fs/promises');
  */
 
 /** @type {packageJson['fromObject']} */
-exports.fromObject = function fromObject(packageJson) {
+exports.fromObject = function fromObject(packageObject) {
 	try {
 		// Package.json root element must be an object "{}"
-		if (!packageJson || typeof packageJson !== 'object' || Array.isArray(packageJson)) {
+		if (!packageObject || typeof packageObject !== 'object' || Array.isArray(packageObject)) {
 			throw new TypeError('Package.json root element is not an object');
 		}
 
 		// We require at least a name and version
-		if (typeof packageJson.name !== 'string') {
+		if (typeof packageObject.name !== 'string') {
 			throw new TypeError('Package.json name property is not a string');
 		}
-		if (typeof packageJson.version !== 'string') {
+		if (typeof packageObject.version !== 'string') {
 			throw new TypeError('Package.json version property is not a string');
 		}
 
-		return packageJson;
+		return packageObject;
 	} catch (/** @type {any} */ error) {
 		error.code = 'PACKAGE_JSON_INVALID';
 		throw error;

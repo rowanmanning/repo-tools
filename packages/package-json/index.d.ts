@@ -28,14 +28,14 @@ declare module '@rowanmanning/package-json' {
 	export type AnyPackageLock = PackageLockV1 | PackageLockV2 | PackageLockV3;
 
 	interface PackageJsonMethods {
-		fromObject(packageJson: PackageJson): PackageJson;
+		fromObject(packageObject: PackageJson): PackageJson;
 		fromString(jsonString: string): PackageJson;
 		fromFile(path: string): Promise<PackageJson>;
 		fromDirectory(path: string): Promise<PackageJson>;
 	}
 
 	interface PackageLockMethods {
-		fromObject(packageJson: AnyPackageLock): AnyPackageLock;
+		fromObject(packageObject: AnyPackageLock): AnyPackageLock;
 		fromString(jsonString: string): AnyPackageLock;
 		fromFile(path: string): Promise<AnyPackageLock>;
 		fromDirectory(path: string): Promise<AnyPackageLock>;

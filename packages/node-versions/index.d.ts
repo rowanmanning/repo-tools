@@ -13,7 +13,7 @@ declare module '@rowanmanning/node-versions' {
 	): string[];
 
 	export function getPackageNodeVersions(
-		packageJson: Partial<PackageJson> | Partial<AnyPackageLock>,
+		pkg: Partial<PackageJson> | Partial<AnyPackageLock>,
 		options?: Options | undefined
 	): string[];
 }

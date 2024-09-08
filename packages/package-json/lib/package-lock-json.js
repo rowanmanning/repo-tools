@@ -10,30 +10,30 @@ const validLockfileVersions = [1, 2, 3];
  */
 
 /** @type {packageLock['fromObject']} */
-exports.fromObject = function fromObject(packageLock) {
+exports.fromObject = function fromObject(packageObject) {
 	try {
 		// Package-lock.json root element must be an object "{}"
-		if (!packageLock || typeof packageLock !== 'object' || Array.isArray(packageLock)) {
+		if (!packageObject || typeof packageObject !== 'object' || Array.isArray(packageObject)) {
 			throw new TypeError('Package-lock.json root element is not an object');
 		}
 
 		// We require at least a name, version, and lockfile version
-		if (typeof packageLock.name !== 'string') {
+		if (typeof packageObject.name !== 'string') {
 			throw new TypeError('Package-lock.json name property is not a string');
 		}
-		if (typeof packageLock.version !== 'string') {
+		if (typeof packageObject.version !== 'string') {
 			throw new TypeError('Package-lock.json version property is not a string');
 		}
-		if (typeof packageLock.lockfileVersion !== 'number') {
+		if (typeof packageObject.lockfileVersion !== 'number') {
 			throw new TypeError('Package-lock.json lockfileVersion property is not a number');
 		}
-		if (!validLockfileVersions.includes(packageLock.lockfileVersion)) {
+		if (!validLockfileVersions.includes(packageObject.lockfileVersion)) {
 			throw new TypeError(
 				`Package-lock.json lockfileVersion property is not one of ${validLockfileVersions.join(',')}`
 			);
 		}
 
-		return packageLock;
+		return packageObject;
 	} catch (/** @type {any} */ error) {
 		error.code = 'PACKAGE_LOCK_JSON_INVALID';
 		throw error;
