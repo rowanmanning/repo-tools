@@ -19,5 +19,5 @@
 			}
 		}
 	},
-	"expectedError": "Invalid argument: packageJson is a lockfile other than v2 or v3"
+	"expectedError": "Invalid argument: pkg is a lockfile other than v2 or v3"
 }
