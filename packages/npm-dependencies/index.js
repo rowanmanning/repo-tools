@@ -46,7 +46,7 @@ exports.getPackageDependencies = function getPackageDependencies(pkg, userOption
 		if (lockfile.lockfileVersion === 2 || lockfile.lockfileVersion === 3) {
 			return getPackageLockDependencies(lockfile, options);
 		}
-		throw new TypeError('Invalid argument: packageJson is a lockfile other than v2 or v3');
+		throw new TypeError('Invalid argument: pkg is a lockfile other than v2 or v3');
 	}
 	return getPackageJsonDependencies(packageJson.fromObject(pkg));
 };
