@@ -6,6 +6,7 @@ Get a resolved list of dependencies found in a `package.json` or `package-lock.j
 * [Requirements](#requirements)
 * [Usage](#usage)
   * [`getPackageDependencies()`](#getpackagedependencies)
+  * [`getAllWorkspaceDependencies()`](#getallworkspacedependencies)
 * [Contributing](#contributing)
 * [License](#license)
 
@@ -67,6 +68,36 @@ const dependencies = getPackageDependencies(require('./package.json'));
 // or
 const dependencies = getPackageDependencies(require('./package-lock.json'));
 ```
+
+### `getAllWorkspaceDependencies()`
+
+A function to list dependencies for all workspaces defined in a `package-lock.json` file. This function has the following signature:
+
+```ts
+(packageJson: PackageJson) => Workspace[]
+```
+
+Returned workspaces have the following signature:
+
+```ts
+{
+    workspace: string;
+    name: string;
+    version: string;
+    dependencies: [
+        {
+            name: string;
+            version: string;
+            isBundled: boolean;
+            isDev: boolean;
+            isOptional: boolean;
+            isPeer: boolean;
+        }
+    ]
+}
+```
+
+`PackageJson` must be a JavaScript object that is a valid `package-lock.json` file. We recommend using [@rowanmanning/package-json](../package-json#readme).
 
 
 ## Contributing

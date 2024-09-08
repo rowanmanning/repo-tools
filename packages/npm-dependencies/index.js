@@ -1,5 +1,6 @@
 'use strict';
 
+const { getPackageWorkspaces } = require('@rowanmanning/npm-workspaces');
 const { packageJson, packageLock } = require('@rowanmanning/package-json');
 
 /**
@@ -49,6 +50,19 @@ exports.getPackageDependencies = function getPackageDependencies(pkg, userOption
 		throw new TypeError('Invalid argument: pkg is a lockfile other than v2 or v3');
 	}
 	return getPackageJsonDependencies(packageJson.fromObject(pkg));
+};
+
+/** @type {npmDependencies['getAllWorkspaceDependencies']} */
+exports.getAllWorkspaceDependencies = function getAllWorkspaceDependencies(pkg) {
+	return getPackageWorkspaces(pkg).map((workspace) => {
+		const workspacePackage = packageJson.fromObject(pkg.packages?.[workspace]);
+		return {
+			workspace,
+			name: workspacePackage.name,
+			version: workspacePackage.version,
+			dependencies: exports.getPackageDependencies(pkg, { workspace })
+		};
+	});
 };
 
 /**

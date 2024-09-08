@@ -5,11 +5,16 @@ const { afterEach, beforeEach, describe, it, mock } = require('node:test');
 const quibble = require('quibble');
 
 describe('@rowanmanning/npm-dependencies', () => {
+	let getPackageWorkspaces;
 	let packageJson;
 	let packageLock;
 	let subject;
 
 	beforeEach(() => {
+		getPackageWorkspaces = mock.fn();
+		getPackageWorkspaces.mock.mockImplementation(() => ['']);
+		quibble('@rowanmanning/npm-workspaces', { getPackageWorkspaces });
+
 		packageJson = { fromObject: mock.fn() };
 		packageJson.fromObject.mock.mockImplementation((pkg) => pkg);
 		packageLock = { fromObject: mock.fn() };
@@ -686,6 +691,222 @@ describe('@rowanmanning/npm-dependencies', () => {
 					version: 'mock-package-lock-version'
 				};
 				assert.throws(() => subject.getPackageDependencies(pkg), TypeError);
+			});
+		});
+	});
+
+	describe('.getAllWorkspaceDependencies(pkg)', () => {
+		let pkg;
+		let returnValue;
+
+		describe('when the package is a v2 package-lock.json file', () => {
+			beforeEach(() => {
+				pkg = {
+					lockfileVersion: 2,
+					name: 'mock-package-lock',
+					version: 'mock-package-lock-version',
+					packages: {
+						'': {
+							name: 'mock-package',
+							version: 'mock-package-version',
+							dependencies: {
+								'mock-dependency-1': 'mock-version-1',
+								'mock-dependency-2': 'mock-version-2'
+							}
+						},
+						'node_modules/mock-dependency-1': {
+							version: 'mock-resolved-version-1'
+						},
+						'node_modules/mock-dependency-2': {
+							version: 'mock-resolved-version-2'
+						}
+					}
+				};
+				returnValue = subject.getAllWorkspaceDependencies(pkg);
+			});
+
+			it('gets the package workspaces', () => {
+				assert.equal(getPackageWorkspaces.mock.callCount(), 1);
+				assert.deepEqual(getPackageWorkspaces.mock.calls.at(0).arguments, [pkg]);
+			});
+
+			it('returns the expected workspace dependencies', () => {
+				assert.deepEqual(returnValue, [
+					{
+						workspace: '',
+						name: 'mock-package',
+						version: 'mock-package-version',
+						dependencies: [
+							{
+								name: 'mock-dependency-1',
+								version: 'mock-resolved-version-1',
+								isBundled: false,
+								isDev: false,
+								isOptional: false,
+								isPeer: false
+							},
+							{
+								name: 'mock-dependency-2',
+								version: 'mock-resolved-version-2',
+								isBundled: false,
+								isDev: false,
+								isOptional: false,
+								isPeer: false
+							}
+						]
+					}
+				]);
+			});
+
+			describe('when the package has multiple workspaces', () => {
+				it('returns the expected dependencies', () => {
+					getPackageWorkspaces.mock.mockImplementation(() => [
+						'',
+						'mock-workspace-1',
+						'mock-workspace-2'
+					]);
+					pkg = {
+						lockfileVersion: 2,
+						name: 'mock-package-lock',
+						version: 'mock-package-lock-version',
+						packages: {
+							'': {
+								name: 'mock-root-package',
+								version: 'mock-root-package-version',
+								dependencies: {
+									'mock-dependency-1': 'mock-version-1',
+									'mock-dependency-2': 'mock-version-2'
+								}
+							},
+							'mock-workspace-1': {
+								name: 'mock-workspace-1-package',
+								version: 'mock-workspace-1-package-version',
+								dependencies: {
+									'mock-dependency-3': 'mock-version-3',
+									'mock-dependency-4': 'mock-version-4'
+								}
+							},
+							'mock-workspace-2': {
+								name: 'mock-workspace-2-package',
+								version: 'mock-workspace-2-package-version',
+								dependencies: {
+									'mock-dependency-5': 'mock-version-5',
+									'mock-dependency-6': 'mock-version-6'
+								}
+							},
+							'node_modules/mock-dependency-1': {
+								version: 'mock-resolved-version-1'
+							},
+							'node_modules/mock-dependency-2': {
+								version: 'mock-resolved-version-2'
+							},
+							'node_modules/mock-dependency-3': {
+								version: 'mock-resolved-version-3'
+							},
+							'node_modules/mock-dependency-4': {
+								version: 'mock-resolved-version-4'
+							},
+							'node_modules/mock-dependency-5': {
+								version: 'mock-resolved-version-5'
+							},
+							'node_modules/mock-dependency-6': {
+								version: 'mock-resolved-version-6'
+							}
+						}
+					};
+					assert.deepEqual(subject.getAllWorkspaceDependencies(pkg), [
+						{
+							workspace: '',
+							name: 'mock-root-package',
+							version: 'mock-root-package-version',
+							dependencies: [
+								{
+									name: 'mock-dependency-1',
+									version: 'mock-resolved-version-1',
+									isBundled: false,
+									isDev: false,
+									isOptional: false,
+									isPeer: false
+								},
+								{
+									name: 'mock-dependency-2',
+									version: 'mock-resolved-version-2',
+									isBundled: false,
+									isDev: false,
+									isOptional: false,
+									isPeer: false
+								}
+							]
+						},
+						{
+							workspace: 'mock-workspace-1',
+							name: 'mock-workspace-1-package',
+							version: 'mock-workspace-1-package-version',
+							dependencies: [
+								{
+									name: 'mock-dependency-3',
+									version: 'mock-resolved-version-3',
+									isBundled: false,
+									isDev: false,
+									isOptional: false,
+									isPeer: false
+								},
+								{
+									name: 'mock-dependency-4',
+									version: 'mock-resolved-version-4',
+									isBundled: false,
+									isDev: false,
+									isOptional: false,
+									isPeer: false
+								}
+							]
+						},
+						{
+							workspace: 'mock-workspace-2',
+							name: 'mock-workspace-2-package',
+							version: 'mock-workspace-2-package-version',
+							dependencies: [
+								{
+									name: 'mock-dependency-5',
+									version: 'mock-resolved-version-5',
+									isBundled: false,
+									isDev: false,
+									isOptional: false,
+									isPeer: false
+								},
+								{
+									name: 'mock-dependency-6',
+									version: 'mock-resolved-version-6',
+									isBundled: false,
+									isDev: false,
+									isOptional: false,
+									isPeer: false
+								}
+							]
+						}
+					]);
+				});
+			});
+		});
+
+		describe('when the package is a package.json file', () => {
+			it('throws an error', () => {
+				pkg = {
+					name: 'mock-package-lock',
+					version: 'mock-package-lock-version'
+				};
+				assert.throws(() => subject.getAllWorkspaceDependencies(pkg), TypeError);
+			});
+		});
+
+		describe('when the package is a v1 package-lock.json file', () => {
+			it('throws an error', () => {
+				pkg = {
+					lockfileVersion: 1,
+					name: 'mock-package-lock',
+					version: 'mock-package-lock-version'
+				};
+				assert.throws(() => subject.getAllWorkspaceDependencies(pkg), TypeError);
 			});
 		});
 	});

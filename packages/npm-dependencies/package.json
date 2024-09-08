@@ -18,6 +18,7 @@
   "main": "index.js",
   "types": "index.d.ts",
   "dependencies": {
+    "@rowanmanning/npm-workspaces": "^1.0.0",
     "@rowanmanning/package-json": "^1.0.1"
   }
 }

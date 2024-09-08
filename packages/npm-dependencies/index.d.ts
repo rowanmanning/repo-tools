@@ -10,6 +10,13 @@ declare module '@rowanmanning/npm-dependencies' {
 		isPeer: boolean;
 	}
 
+	export interface Workspace {
+		workspace: string;
+		name: string;
+		version: string;
+		dependencies: Dependency[];
+	}
+
 	export interface Options {
 		workspace?: string;
 	}
@@ -18,4 +25,8 @@ declare module '@rowanmanning/npm-dependencies' {
 		pkg: Partial<PackageJson> | Partial<PackageLockV2> | Partial<PackageLockV3>,
 		options?: Options | undefined
 	): Dependency[];
+
+	export function getAllWorkspaceDependencies(
+		pkg: Partial<PackageLockV2> | Partial<PackageLockV3>
+	): Workspace[];
 }
