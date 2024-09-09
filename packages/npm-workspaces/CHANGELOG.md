@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.0.2](https://github.com/rowanmanning/repo-tools/compare/npm-workspaces-v1.0.1...npm-workspaces-v1.0.2) (2024-09-09)
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @rowanmanning/package-json bumped from ^1.0.2 to ^1.0.3
+
 ## [1.0.1](https://github.com/rowanmanning/repo-tools/compare/npm-workspaces-v1.0.0...npm-workspaces-v1.0.1) (2024-09-08)
 
 
