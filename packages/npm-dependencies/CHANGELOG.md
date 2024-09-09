@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.1.1](https://github.com/rowanmanning/repo-tools/compare/npm-dependencies-v1.1.0...npm-dependencies-v1.1.1) (2024-09-09)
+
+
+### Bug Fixes
+
+* relax package version requirement ([d4ed9af](https://github.com/rowanmanning/repo-tools/commit/d4ed9afb64304b9ff964af17f53b39d55344e53d))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @rowanmanning/npm-workspaces bumped from ^1.0.1 to ^1.0.2
+    * @rowanmanning/package-json bumped from ^1.0.2 to ^1.0.3
+
 ## [1.1.0](https://github.com/rowanmanning/repo-tools/compare/npm-dependencies-v1.0.1...npm-dependencies-v1.1.0) (2024-09-08)
 
 

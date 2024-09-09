@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3](https://github.com/rowanmanning/repo-tools/compare/package-json-v1.0.2...package-json-v1.0.3) (2024-09-09)
+
+
+### Bug Fixes
+
+* relax package version requirement ([d4ed9af](https://github.com/rowanmanning/repo-tools/commit/d4ed9afb64304b9ff964af17f53b39d55344e53d))
+
 ## [1.0.2](https://github.com/rowanmanning/repo-tools/compare/package-json-v1.0.1...package-json-v1.0.2) (2024-09-08)
 
 
