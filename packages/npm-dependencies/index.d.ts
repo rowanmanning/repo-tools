@@ -13,7 +13,7 @@ declare module '@rowanmanning/npm-dependencies' {
 	export interface Workspace {
 		workspace: string;
 		name: string;
-		version: string;
+		version?: string | undefined;
 		dependencies: Dependency[];
 	}
 

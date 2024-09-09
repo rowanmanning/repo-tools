@@ -4,7 +4,7 @@ declare module '@rowanmanning/package-json' {
 		[key: string]: any;
 		lockfileVersion: never;
 		name: string;
-		version: string;
+		version?: string | undefined;
 	}
 
 	interface PackageLock {
@@ -12,7 +12,7 @@ declare module '@rowanmanning/package-json' {
 		[key: string]: any;
 		lockfileVersion: number;
 		name: string;
-		version: string;
+		version?: string | undefined;
 	}
 
 	export interface PackageLockV1 extends PackageLock {

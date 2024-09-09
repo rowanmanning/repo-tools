@@ -21,7 +21,7 @@ exports.fromObject = function fromObject(packageObject) {
 		if (typeof packageObject.name !== 'string') {
 			throw new TypeError('Package-lock.json name property is not a string');
 		}
-		if (typeof packageObject.version !== 'string') {
+		if (packageObject.version !== undefined && typeof packageObject.version !== 'string') {
 			throw new TypeError('Package-lock.json version property is not a string');
 		}
 		if (typeof packageObject.lockfileVersion !== 'number') {
