@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.8](https://github.com/rowanmanning/repo-tools/compare/node-versions-v2.0.7...node-versions-v2.0.8) (2024-10-25)
+
+
+### Bug Fixes
+
+* update available Node.js versions ([3d22d99](https://github.com/rowanmanning/repo-tools/commit/3d22d99e19928a06d77d256a73b456a33e9d24b9))
+
 ## [2.0.7](https://github.com/rowanmanning/repo-tools/compare/node-versions-v2.0.6...node-versions-v2.0.7) (2024-10-17)
 
 
