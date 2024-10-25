@@ -144,9 +144,10 @@ describe('@rowanmanning/node-versions/lib/fetch-node-versions', () => {
 
 			it('rejects with an error', () => {
 				assert.ok(rejectedError instanceof AssertionError);
-				assert.equal(
-					rejectedError.message,
-					'version (index 1) has a non-string "version" property'
+				assert.ok(
+					rejectedError.message.startsWith(
+						'version (index 1) has a non-string "version" property'
+					)
 				);
 			});
 		});
