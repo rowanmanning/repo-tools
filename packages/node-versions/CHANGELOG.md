@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.10](https://github.com/rowanmanning/repo-tools/compare/node-versions-v2.0.9...node-versions-v2.0.10) (2024-11-12)
+
+
+### Bug Fixes
+
+* update available Node.js versions ([e0a5a6f](https://github.com/rowanmanning/repo-tools/commit/e0a5a6f79c806274c467f724bf80f145362be49c))
+
 ## [2.0.9](https://github.com/rowanmanning/repo-tools/compare/node-versions-v2.0.8...node-versions-v2.0.9) (2024-10-30)
 
 
