@@ -1,5 +1,5 @@
 {
-	"packages/node-versions": "2.0.10",
+	"packages/node-versions": "2.0.11",
 	"packages/package-json": "1.0.3",
 	"packages/package-json-github": "1.0.3",
 	"packages/npm-dependencies": "1.1.1",
