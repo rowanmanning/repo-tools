@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.15](https://github.com/rowanmanning/repo-tools/compare/node-versions-v2.0.14...node-versions-v2.0.15) (2025-01-08)
+
+
+### Bug Fixes
+
+* update available Node.js versions ([151836e](https://github.com/rowanmanning/repo-tools/commit/151836ed4268fa1e766b38e7f0966b2cea25dafd))
+
 ## [2.0.14](https://github.com/rowanmanning/repo-tools/compare/node-versions-v2.0.13...node-versions-v2.0.14) (2024-12-20)
 
 
