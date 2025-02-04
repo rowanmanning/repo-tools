@@ -6,7 +6,7 @@
 	},
 	"linter": {
 		"rules": {
-			"nursery": {
+			"correctness": {
 				"noUndeclaredDependencies": "off"
 			}
 		}

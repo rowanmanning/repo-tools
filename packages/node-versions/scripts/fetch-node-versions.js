@@ -12,7 +12,7 @@ async function runScript() {
 }
 
 runScript().catch((error) => {
-	// biome-ignore lint/nursery/noConsole: required for debugging this script
+	// biome-ignore lint/suspicious/noConsole: required for debugging this script
 	console.error(error.stack);
 	process.exitCode = 1;
 });
