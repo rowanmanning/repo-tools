@@ -16,7 +16,7 @@ Load and parse `package.json` and `package-lock.json` files from GitHub reposito
 
 This library requires the following to run:
 
-  * [Node.js](https://nodejs.org/) 18+
+  * [Node.js](https://nodejs.org/) 20+
 
 
 ## Usage
