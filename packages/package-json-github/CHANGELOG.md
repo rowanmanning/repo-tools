@@ -1,5 +1,23 @@
 # Changelog
 
+## [2.0.0](https://github.com/rowanmanning/repo-tools/compare/package-json-github-v1.0.3...package-json-github-v2.0.0) (2025-03-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* drop Node.js 18
+
+### Miscellaneous Chores
+
+* drop Node.js 18 ([b573365](https://github.com/rowanmanning/repo-tools/commit/b573365908e23999791e0bb2d1b81c821f96317c))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @rowanmanning/package-json bumped from ^1.0.3 to ^2.0.0
+
 ## [1.0.3](https://github.com/rowanmanning/repo-tools/compare/package-json-github-v1.0.2...package-json-github-v1.0.3) (2024-09-09)
 
 
