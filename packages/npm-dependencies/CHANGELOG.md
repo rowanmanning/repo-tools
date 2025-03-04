@@ -1,5 +1,24 @@
 # Changelog
 
+## [2.0.0](https://github.com/rowanmanning/repo-tools/compare/npm-dependencies-v1.1.1...npm-dependencies-v2.0.0) (2025-03-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* drop Node.js 18
+
+### Miscellaneous Chores
+
+* drop Node.js 18 ([b573365](https://github.com/rowanmanning/repo-tools/commit/b573365908e23999791e0bb2d1b81c821f96317c))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @rowanmanning/npm-workspaces bumped from ^1.0.2 to ^2.0.0
+    * @rowanmanning/package-json bumped from ^1.0.3 to ^2.0.0
+
 ## [1.1.1](https://github.com/rowanmanning/repo-tools/compare/npm-dependencies-v1.1.0...npm-dependencies-v1.1.1) (2024-09-09)
 
 

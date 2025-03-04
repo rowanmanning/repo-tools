@@ -1,5 +1,23 @@
 # Changelog
 
+## [3.0.0](https://github.com/rowanmanning/repo-tools/compare/node-versions-v2.0.21...node-versions-v3.0.0) (2025-03-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* drop Node.js 18
+
+### Miscellaneous Chores
+
+* drop Node.js 18 ([b573365](https://github.com/rowanmanning/repo-tools/commit/b573365908e23999791e0bb2d1b81c821f96317c))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @rowanmanning/package-json bumped from ^1.0.3 to ^2.0.0
+
 ## [2.0.21](https://github.com/rowanmanning/repo-tools/compare/node-versions-v2.0.20...node-versions-v2.0.21) (2025-02-27)
 
 
