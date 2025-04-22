@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.4](https://github.com/rowanmanning/repo-tools/compare/node-versions-v3.0.3...node-versions-v3.0.4) (2025-04-22)
+
+
+### Bug Fixes
+
+* update available Node.js versions ([08098f9](https://github.com/rowanmanning/repo-tools/commit/08098f992cc40a97404dcffbbf425e8f90831f2a))
+
 ## [3.0.3](https://github.com/rowanmanning/repo-tools/compare/node-versions-v3.0.2...node-versions-v3.0.3) (2025-04-02)
 
 
