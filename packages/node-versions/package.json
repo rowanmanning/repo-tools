@@ -23,6 +23,6 @@
   "types": "index.d.ts",
   "dependencies": {
     "@rowanmanning/package-json": "^2.0.0",
-    "semver": "^7.7.1"
+    "semver": "^7.7.2"
   }
 }
