@@ -13,7 +13,7 @@
   "bugs": "https://github.com/rowanmanning/repo-tools/issues",
   "license": "MIT",
   "engines": {
-    "node": "20.x || 22.x"
+    "node": "20.x || 22.x || 24.x"
   },
   "scripts": {
     "fetch-versions": "node ./scripts/fetch-node-versions.js",
