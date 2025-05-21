@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/rowanmanning/repo-tools/compare/package-json-v2.0.0...package-json-v2.1.0) (2025-05-21)
+
+
+### Features
+
+* add Node.js 24 support ([e90607d](https://github.com/rowanmanning/repo-tools/commit/e90607d2f4a8d7fcd505dc07ace32bdad804f22b))
+
 ## [2.0.0](https://github.com/rowanmanning/repo-tools/compare/package-json-v1.0.3...package-json-v2.0.0) (2025-03-04)
 
 
