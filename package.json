@@ -15,7 +15,7 @@
     "packages/*"
   ],
   "engines": {
-    "node": "20.x || 22.x"
+    "node": "20.x || 22.x || 24.x"
   },
   "scripts": {
     "prepare": "husky || true",
