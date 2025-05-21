@@ -1,6 +1,6 @@
 {
   "name": "@rowanmanning/npm-workspaces",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Get a list of all the npm workspaces found in a package lock file",
   "keywords": [],
   "author": "Rowan Manning (https://rowanmanning.com/)",
@@ -18,6 +18,6 @@
   "main": "index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "@rowanmanning/package-json": "^2.0.0"
+    "@rowanmanning/package-json": "^2.1.0"
   }
 }
