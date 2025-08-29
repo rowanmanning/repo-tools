@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.10](https://github.com/rowanmanning/repo-tools/compare/node-versions-v3.1.9...node-versions-v3.1.10) (2025-08-29)
+
+
+### Bug Fixes
+
+* update available Node.js versions ([07a0b28](https://github.com/rowanmanning/repo-tools/commit/07a0b28fde885809107bb1a68879483f8e02cf83))
+
 ## [3.1.9](https://github.com/rowanmanning/repo-tools/compare/node-versions-v3.1.8...node-versions-v3.1.9) (2025-08-28)
 
 
