@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.12](https://github.com/rowanmanning/repo-tools/compare/node-versions-v3.1.11...node-versions-v3.1.12) (2025-09-11)
+
+
+### Bug Fixes
+
+* update available Node.js versions ([6d9316f](https://github.com/rowanmanning/repo-tools/commit/6d9316ffe0f38dfab0b90f00ba00d401e35be8db))
+
 ## [3.1.11](https://github.com/rowanmanning/repo-tools/compare/node-versions-v3.1.10...node-versions-v3.1.11) (2025-09-04)
 
 
