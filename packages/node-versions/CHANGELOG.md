@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.1.17](https://github.com/rowanmanning/repo-tools/compare/node-versions-v3.1.16...node-versions-v3.1.17) (2026-02-19)
+
+
+### Bug Fixes
+
+* bump semver from 7.7.3 to 7.7.4 ([9a1f0ff](https://github.com/rowanmanning/repo-tools/commit/9a1f0ff73ba94d874d8d22fee43563b29ac56f13))
+* update available Node.js versions ([38ada58](https://github.com/rowanmanning/repo-tools/commit/38ada58764e8435acd79cec35207eadfcc77c593))
+
 ## [3.1.16](https://github.com/rowanmanning/repo-tools/compare/node-versions-v3.1.15...node-versions-v3.1.16) (2025-10-18)
 
 
