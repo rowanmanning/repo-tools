@@ -1,5 +1,8 @@
 name: Check for Node.js Updates
 
+permissions:
+  contents: read
+
 on:
   schedule:
     - cron: 7 13 * * *
