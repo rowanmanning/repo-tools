@@ -19,8 +19,12 @@
     "fetch-versions": "node ./scripts/fetch-node-versions.js",
     "postinstall": "node ./scripts/fetch-node-versions.js || true"
   },
-  "main": "index.js",
-  "types": "index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./index.js"
+    }
+  },
   "dependencies": {
     "@rowanmanning/package-json": "^2.1.0",
     "semver": "^7.7.4"
