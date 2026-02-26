@@ -15,7 +15,7 @@ Get a resolved list of dependencies found in a `package.json` or `package-lock.j
 
 This library requires the following to run:
 
-  * [Node.js](https://nodejs.org/) 20+
+  * [Node.js](https://nodejs.org/) 22+
 
 
 ## Usage
