@@ -3,7 +3,13 @@
 const { afterEach, beforeEach, describe, it, mock } = require('node:test');
 const assert = require('node:assert/strict');
 const { AssertionError } = require('node:assert');
-const quibble = require('quibble');
+mock.module('../../../package.json', {
+	defaultExport: {
+		name: 'mock-name',
+		version: 'mock-version',
+		homepage: 'mock-home-page'
+	}
+});
 
 describe('@rowanmanning/node-versions/lib/fetch-node-versions', () => {
 	let json;
@@ -14,19 +20,11 @@ describe('@rowanmanning/node-versions/lib/fetch-node-versions', () => {
 		json = [{ version: '1.2.3' }, { version: '4.5.6' }];
 		response = { json: mock.fn(async () => json) };
 		mock.method(global, 'fetch', async () => response);
-
-		quibble('../../../package.json', {
-			name: 'mock-name',
-			version: 'mock-version',
-			homepage: 'mock-home-page'
-		});
-
 		subject = require('../../../lib/fetch-node-versions');
 	});
 
 	afterEach(() => {
 		global.fetch.mock.restore();
-		quibble.reset();
 	});
 
 	describe('.fetchNodeVersions(path)', () => {
