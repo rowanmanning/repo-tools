@@ -1,15 +1,14 @@
 'use strict';
 
 const assert = require('node:assert/strict');
-const { afterEach, beforeEach, describe, it, mock } = require('node:test');
-const quibble = require('quibble');
+const { before, describe, it, mock } = require('node:test');
 
 describe('@rowanmanning/node-versions', () => {
 	let nodeVersions;
 	let semver;
 	let subject;
 
-	beforeEach(() => {
+	before(() => {
 		nodeVersions = ['3.0.0', '2.1.0', '2.0.1', '2.0.0', '1.1.0', '1.0.0'];
 		semver = {
 			validRange: mock.fn(),
@@ -17,13 +16,11 @@ describe('@rowanmanning/node-versions', () => {
 			major: mock.fn()
 		};
 
-		quibble('../../data/versions.json', nodeVersions);
-		quibble('semver', semver);
+		mock.module('../../data/versions.json', { defaultExport: nodeVersions });
+		mock.module('semver', { defaultExport: semver });
 
 		subject = require('../..');
 	});
-
-	afterEach(() => quibble.reset());
 
 	describe('.nodeVersions', () => {
 		it('is a read-only copy of the versions.json file', () => {
@@ -35,7 +32,7 @@ describe('@rowanmanning/node-versions', () => {
 	describe('.getEnginesNodeVersions(engines)', () => {
 		let returnedValue;
 
-		beforeEach(() => {
+		before(() => {
 			semver.validRange.mock.mockImplementation(() => true);
 			semver.satisfies.mock.mockImplementation((version) => version.startsWith('2.'));
 			returnedValue = subject.getEnginesNodeVersions('mock-engines');
@@ -79,7 +76,7 @@ describe('@rowanmanning/node-versions', () => {
 		});
 
 		describe('when the engines string is not a string', () => {
-			beforeEach(() => {
+			before(() => {
 				semver.validRange.mock.resetCalls();
 				semver.satisfies.mock.resetCalls();
 				returnedValue = subject.getEnginesNodeVersions(123);
@@ -96,7 +93,7 @@ describe('@rowanmanning/node-versions', () => {
 		});
 
 		describe('when the engines string is not a valid semver range', () => {
-			beforeEach(() => {
+			before(() => {
 				semver.satisfies.mock.resetCalls();
 				semver.validRange.mock.mockImplementation(() => false);
 				returnedValue = subject.getEnginesNodeVersions('mock-engines');
@@ -115,13 +112,13 @@ describe('@rowanmanning/node-versions', () => {
 	describe('.getEnginesNodeVersions(engines, options)', () => {
 		let returnedValue;
 
-		beforeEach(() => {
+		before(() => {
 			semver.validRange.mock.mockImplementation(() => true);
 			semver.satisfies.mock.mockImplementation(() => false);
 		});
 
 		describe('when options.majorsOnly is true', () => {
-			beforeEach(() => {
+			before(() => {
 				semver.satisfies.mock.mockImplementation(
 					(version) => version.startsWith('2.') || version.startsWith('3.')
 				);
@@ -150,7 +147,7 @@ describe('@rowanmanning/node-versions', () => {
 	describe('.getPackageNodeVersions(path, options)', () => {
 		let returnedValue;
 
-		beforeEach(() => {
+		before(() => {
 			subject.getEnginesNodeVersions = mock.fn(() => 'mock-engines-node-versions');
 			returnedValue = subject.getPackageNodeVersions(
 				{
@@ -175,7 +172,7 @@ describe('@rowanmanning/node-versions', () => {
 		});
 
 		describe('when the package has a lockfileVersion greater than 1', () => {
-			beforeEach(() => {
+			before(() => {
 				subject.getEnginesNodeVersions.mock.resetCalls();
 				returnedValue = subject.getPackageNodeVersions(
 					{
@@ -202,7 +199,7 @@ describe('@rowanmanning/node-versions', () => {
 		});
 
 		describe('when the package does not have an engines property', () => {
-			beforeEach(() => {
+			before(() => {
 				subject.getEnginesNodeVersions.mock.resetCalls();
 				returnedValue = subject.getPackageNodeVersions({});
 			});
@@ -217,7 +214,7 @@ describe('@rowanmanning/node-versions', () => {
 		});
 
 		describe('when the package does not have an engines.node property', () => {
-			beforeEach(() => {
+			before(() => {
 				subject.getEnginesNodeVersions.mock.resetCalls();
 				returnedValue = subject.getPackageNodeVersions({
 					engines: { npm: 'mock-npm-engines' }
@@ -234,7 +231,7 @@ describe('@rowanmanning/node-versions', () => {
 		});
 
 		describe('when the package engines.node property is not a string', () => {
-			beforeEach(() => {
+			before(() => {
 				subject.getEnginesNodeVersions.mock.resetCalls();
 				returnedValue = subject.getPackageNodeVersions({
 					engines: { node: 123 }

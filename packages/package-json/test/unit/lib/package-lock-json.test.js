@@ -1,23 +1,17 @@
 'use strict';
 
-const { afterEach, beforeEach, describe, it, mock } = require('node:test');
+const { before, beforeEach, describe, it, mock } = require('node:test');
 const assert = require('node:assert/strict');
-const quibble = require('quibble');
 
 describe('@rowanmanning/package-json/lib/package-lock-json', () => {
 	let readFile;
 	let subject;
 
-	beforeEach(() => {
+	before(() => {
 		readFile = mock.fn();
-		quibble('node:fs/promises', { readFile });
+		mock.module('node:fs/promises', { namedExports: { readFile } });
 
 		subject = require('../../../lib/package-lock-json');
-	});
-
-	afterEach(() => {
-		quibble.reset();
-		mock.restoreAll();
 	});
 
 	describe('.fromObject(packageLock)', () => {

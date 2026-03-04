@@ -1,33 +1,29 @@
 'use strict';
 
-const { afterEach, beforeEach, describe, it, mock } = require('node:test');
+const { before, describe, it, mock } = require('node:test');
 const assert = require('node:assert/strict');
-const quibble = require('quibble');
 
 describe('@rowanmanning/package-json-github/lib/package-lock-json', () => {
 	let fromString;
 	let getRepoContent;
 	let subject;
 
-	beforeEach(() => {
+	before(() => {
 		fromString = mock.fn();
-		quibble('@rowanmanning/package-json', { packageLock: { fromString } });
+		mock.module('@rowanmanning/package-json', {
+			namedExports: { packageLock: { fromString } }
+		});
 
 		getRepoContent = mock.fn();
-		quibble('../../../lib/github', { getRepoContent });
+		mock.module('../../../lib/github.js', { namedExports: { getRepoContent } });
 
 		subject = require('../../../lib/package-lock-json');
-	});
-
-	afterEach(() => {
-		quibble.reset();
-		mock.restoreAll();
 	});
 
 	describe('.fromGitHubRepo(options)', () => {
 		let resolvedValue;
 
-		beforeEach(async () => {
+		before(async () => {
 			getRepoContent.mock.mockImplementation(() => Promise.resolve('mock-repo-contents'));
 			fromString.mock.mockImplementation(() => 'mock-json');
 			resolvedValue = await subject.fromGitHubRepo({
@@ -59,7 +55,7 @@ describe('@rowanmanning/package-json-github/lib/package-lock-json', () => {
 		});
 
 		describe('when `options.path` is set', () => {
-			beforeEach(async () => {
+			before(async () => {
 				getRepoContent.mock.resetCalls();
 				resolvedValue = await subject.fromGitHubRepo({
 					auth: 'mock-auth',
