@@ -1,26 +1,22 @@
 'use strict';
 
-const { afterEach, beforeEach, describe, it, mock } = require('node:test');
+const { before, beforeEach, describe, it, mock } = require('node:test');
 const assert = require('node:assert/strict');
-const quibble = require('quibble');
 
 describe('@rowanmanning/package-json-github/lib/github', () => {
 	let subject;
 
-	beforeEach(() => {
+	before(() => {
 		mock.method(global, 'fetch');
-		quibble('../../../package.json', {
-			name: 'mock-name',
-			version: 'mock-version',
-			homepage: 'mock-homepage'
+		mock.module('../../../package.json', {
+			defaultExport: {
+				name: 'mock-name',
+				version: 'mock-version',
+				homepage: 'mock-homepage'
+			}
 		});
 
 		subject = require('../../../lib/github');
-	});
-
-	afterEach(() => {
-		quibble.reset();
-		mock.restoreAll();
 	});
 
 	describe('.getRepoContent(options)', () => {

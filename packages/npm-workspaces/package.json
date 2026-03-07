@@ -13,10 +13,14 @@
   "bugs": "https://github.com/rowanmanning/repo-tools/issues",
   "license": "MIT",
   "engines": {
-    "node": "20.x || 22.x || 24.x"
+    "node": "22.x || 24.x"
   },
-  "main": "index.js",
-  "types": "index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./index.js"
+    }
+  },
   "dependencies": {
     "@rowanmanning/package-json": "^2.1.0"
   }

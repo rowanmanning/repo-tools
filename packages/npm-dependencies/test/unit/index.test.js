@@ -1,8 +1,7 @@
 'use strict';
 
 const assert = require('node:assert/strict');
-const { afterEach, beforeEach, describe, it, mock } = require('node:test');
-const quibble = require('quibble');
+const { before, describe, it, mock } = require('node:test');
 
 describe('@rowanmanning/npm-dependencies', () => {
 	let getPackageWorkspaces;
@@ -10,28 +9,30 @@ describe('@rowanmanning/npm-dependencies', () => {
 	let packageLock;
 	let subject;
 
-	beforeEach(() => {
+	before(() => {
 		getPackageWorkspaces = mock.fn();
 		getPackageWorkspaces.mock.mockImplementation(() => ['']);
-		quibble('@rowanmanning/npm-workspaces', { getPackageWorkspaces });
+		mock.module('@rowanmanning/npm-workspaces', {
+			namedExports: { getPackageWorkspaces }
+		});
 
 		packageJson = { fromObject: mock.fn() };
 		packageJson.fromObject.mock.mockImplementation((pkg) => pkg);
 		packageLock = { fromObject: mock.fn() };
 		packageLock.fromObject.mock.mockImplementation((pkg) => pkg);
-		quibble('@rowanmanning/package-json', { packageJson, packageLock });
+		mock.module('@rowanmanning/package-json', {
+			namedExports: { packageJson, packageLock }
+		});
 
 		subject = require('../..');
 	});
-
-	afterEach(() => quibble.reset());
 
 	describe('.getPackageDependencies(pkg, options)', () => {
 		let pkg;
 		let returnValue;
 
 		describe('when the package is a package.json file', () => {
-			beforeEach(() => {
+			before(() => {
 				pkg = {
 					name: 'mock-package',
 					version: 'mock-package-version',
@@ -351,7 +352,7 @@ describe('@rowanmanning/npm-dependencies', () => {
 		});
 
 		describe('when the package is a v2 package-lock.json file', () => {
-			beforeEach(() => {
+			before(() => {
 				pkg = {
 					lockfileVersion: 2,
 					name: 'mock-package-lock',
@@ -700,7 +701,7 @@ describe('@rowanmanning/npm-dependencies', () => {
 		let returnValue;
 
 		describe('when the package is a v2 package-lock.json file', () => {
-			beforeEach(() => {
+			before(() => {
 				pkg = {
 					lockfileVersion: 2,
 					name: 'mock-package-lock',
