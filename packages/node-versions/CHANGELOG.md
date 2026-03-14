@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.21](https://github.com/rowanmanning/repo-tools/compare/node-versions-v3.1.20...node-versions-v3.1.21) (2026-03-14)
+
+
+### Bug Fixes
+
+* update available Node.js versions ([96cf90e](https://github.com/rowanmanning/repo-tools/commit/96cf90ecc3901332a2d6f092c4a5795fa3661e3b))
+
 ## [3.1.20](https://github.com/rowanmanning/repo-tools/compare/node-versions-v3.1.19...node-versions-v3.1.20) (2026-03-07)
 
 
