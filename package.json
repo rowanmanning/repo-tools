@@ -15,11 +15,13 @@
     "packages/*"
   ],
   "engines": {
-    "node": "20.x || 22.x || 24.x"
+    "node": "22.x || 24.x"
   },
   "scripts": {
     "prepare": "husky || true",
-    "test": "nyc node --test",
+    "test": "npm run test:unit && npm run test:end-to-end",
+    "test:unit": "node --test --experimental-test-module-mocks --experimental-test-coverage --test-coverage-exclude **/*.test.js --test-coverage-branches=100 --test-coverage-functions=100 --test-coverage-lines=100 **/test/unit/**/*.test.js",
+    "test:end-to-end": "node --test **/test/end-to-end/**/*.test.js",
     "verify": "npm run verify:biome && npm run verify:types",
     "verify:biome": "biome check",
     "verify:types": "tsc --noEmit --project ./jsconfig.json"
@@ -28,20 +30,11 @@
     "@commitlint/cli": "^20.4.2",
     "@commitlint/config-conventional": "^19.8.1",
     "@rowanmanning/biome-config": "^3.0.1",
-    "@types/node": "^24.8.1",
+    "@types/node": "^25.3.3",
     "husky": "^9.1.7",
-    "nyc": "^17.1.0",
-    "quibble": "^0.9.2",
     "typescript": "^5.9.3"
   },
-  "nyc": {
-    "eager": true,
-    "reporter": [
-      "html",
-      "text"
-    ]
-  },
   "volta": {
-    "node": "20.15.1"
+    "node": "22.22.0"
   }
 }

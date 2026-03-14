@@ -21,7 +21,7 @@ Load and parse `package.json` and `package-lock.json` files.
 
 This library requires the following to run:
 
-  * [Node.js](https://nodejs.org/) 20+
+  * [Node.js](https://nodejs.org/) 22+
 
 
 ## Usage

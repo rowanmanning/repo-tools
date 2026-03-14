@@ -1,25 +1,22 @@
 'use strict';
 
 const assert = require('node:assert/strict');
-const { afterEach, beforeEach, describe, it } = require('node:test');
-const quibble = require('quibble');
+const { before, describe, it, mock } = require('node:test');
 
 describe('@rowanmanning/package-json', () => {
 	let packageJson;
 	let packageLock;
 	let subject;
 
-	beforeEach(() => {
+	before(() => {
 		packageJson = 'mock-package-json';
 		packageLock = 'mock-package-lock-json';
 
-		quibble('../../lib/package-json', packageJson);
-		quibble('../../lib/package-lock-json', packageLock);
+		mock.module('../../lib/package-json.js', { defaultExport: packageJson });
+		mock.module('../../lib/package-lock-json.js', { defaultExport: packageLock });
 
 		subject = require('../..');
 	});
-
-	afterEach(() => quibble.reset());
 
 	describe('.packageJson', () => {
 		it('is aliases lib/package-json', () => {
