@@ -1,0 +1,29 @@
+'use strict';
+
+const possibleNodeVersions = require('../data/versions.json');
+const semver = require('semver');
+
+/**
+ * @import nodeVersions from '@rowanmanning/node-versions'
+ */
+
+/** @type {nodeVersions['getEnginesNodeVersions']} */
+exports.getEnginesNodeVersions = function getEnginesNodeVersions(engines, options = {}) {
+	if (typeof engines !== 'string' || !semver.validRange(engines)) {
+		return [];
+	}
+
+	const supportedNodeVersions = possibleNodeVersions.filter((version) =>
+		semver.satisfies(version, engines)
+	);
+
+	// Flag to only return the major versions
+	if (options.majorsOnly) {
+		const majorVersions = new Set(
+			supportedNodeVersions.map((version) => `${semver.major(version)}`)
+		);
+		return [...majorVersions];
+	}
+
+	return supportedNodeVersions;
+};
