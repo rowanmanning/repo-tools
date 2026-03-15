@@ -17,7 +17,10 @@
   },
   "scripts": {
     "fetch-versions": "node ./scripts/fetch-node-versions.js",
-    "postinstall": "node ./scripts/fetch-node-versions.js || true"
+    "postinstall": "node ./scripts/fetch-node-versions.js || true",
+    "test": "npm run test:unit && npm run test:end-to-end",
+    "test:unit": "node --test --experimental-test-module-mocks --experimental-test-coverage --test-coverage-exclude '**/*.test.js' --test-coverage-branches=100 --test-coverage-functions=100 --test-coverage-lines=100 'test/unit/**/*.test.js'",
+    "test:end-to-end": "node --test 'test/end-to-end/**/*.test.js'"
   },
   "exports": {
     ".": {

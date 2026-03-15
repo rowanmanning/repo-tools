@@ -19,9 +19,9 @@
   },
   "scripts": {
     "prepare": "husky || true",
-    "test": "npm run test:unit && npm run test:end-to-end",
-    "test:unit": "node --test --experimental-test-module-mocks --experimental-test-coverage --test-coverage-exclude **/*.test.js --test-coverage-branches=100 --test-coverage-functions=100 --test-coverage-lines=100 **/test/unit/**/*.test.js",
-    "test:end-to-end": "node --test **/test/end-to-end/**/*.test.js",
+    "test": "npm run test --workspaces --if-present",
+    "test:unit": "npm run test:unit --workspaces --if-present",
+    "test:end-to-end": "npm run test:end-to-end --workspaces --if-present",
     "verify": "npm run verify:biome && npm run verify:types",
     "verify:biome": "biome check",
     "verify:types": "tsc --noEmit --project ./jsconfig.json"
