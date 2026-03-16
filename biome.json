@@ -2,7 +2,7 @@
 	"$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
 	"extends": ["./node_modules/@rowanmanning/biome-config/config.json"],
 	"files": {
-		"includes": ["!.release-please"]
+		"includes": ["!.release-please", "!**/dist"]
 	},
 	"linter": {
 		"rules": {

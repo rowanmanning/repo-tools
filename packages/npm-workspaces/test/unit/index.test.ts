@@ -1,15 +1,16 @@
 import assert from 'node:assert/strict';
 import { before, describe, it, mock } from 'node:test';
+import type { PackageLockV2, PackageLockV3 } from '@rowanmanning/package-json-github';
 
 const packageLock = { fromObject: mock.fn((pkg) => pkg) };
 mock.module('@rowanmanning/package-json', { namedExports: { packageLock } });
 
-const subject = await import('../../index.js');
+const subject = await import('../../index.ts');
 
 describe('@rowanmanning/npm-workspaces', () => {
 	describe('.getPackageWorkspaces(pkg)', () => {
-		let pkg;
-		let returnValue;
+		let pkg: PackageLockV2 | PackageLockV3;
+		let returnValue: string[];
 
 		describe('when the package is a v3 package-lock.json file', () => {
 			before(() => {
@@ -31,7 +32,7 @@ describe('@rowanmanning/npm-workspaces', () => {
 
 			it('validate the package lock', () => {
 				assert.equal(packageLock.fromObject.mock.callCount(), 1);
-				assert.deepEqual(packageLock.fromObject.mock.calls.at(0).arguments, [pkg]);
+				assert.deepEqual(packageLock.fromObject.mock.calls[0].arguments, [pkg]);
 			});
 
 			it('returns the expected workspaces', () => {
@@ -95,7 +96,7 @@ describe('@rowanmanning/npm-workspaces', () => {
 
 			it('validate the package lock', () => {
 				assert.equal(packageLock.fromObject.mock.callCount(), 1);
-				assert.deepEqual(packageLock.fromObject.mock.calls.at(0).arguments, [pkg]);
+				assert.deepEqual(packageLock.fromObject.mock.calls[0].arguments, [pkg]);
 			});
 
 			it('returns the expected workspaces', () => {
@@ -141,6 +142,7 @@ describe('@rowanmanning/npm-workspaces', () => {
 		describe('when the package is a v1 package-lock.json file', () => {
 			it('throws an error', () => {
 				pkg = {
+					// @ts-expect-error testing that a v1 lockfile causes a runtime error
 					lockfileVersion: 1,
 					name: 'mock-package-lock',
 					version: 'mock-package-lock-version'

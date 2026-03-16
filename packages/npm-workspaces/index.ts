@@ -1,11 +1,9 @@
-import { packageLock } from '@rowanmanning/package-json';
+import { type PackageLockV2, type PackageLockV3, packageLock } from '@rowanmanning/package-json';
 
 /**
- * @import npmWorkspaces from '@rowanmanning/npm-workspaces'
+ * List the npm workspaces that a `package-lock.json` file defines.
  */
-
-/** @type {npmWorkspaces['getPackageWorkspaces']} */
-export function getPackageWorkspaces(pkg) {
+export function getPackageWorkspaces(pkg: PackageLockV2 | PackageLockV3) {
 	const lockfile = packageLock.fromObject(pkg);
 	if (lockfile.lockfileVersion === 2 || lockfile.lockfileVersion === 3) {
 		if (

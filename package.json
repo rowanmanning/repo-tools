@@ -19,13 +19,12 @@
     "node": "22.x || 24.x"
   },
   "scripts": {
-    "prepare": "husky || true",
+    "build": "npm run build --workspaces --if-present",
+    "verify": "biome check",
     "test": "npm run test --workspaces --if-present",
     "test:unit": "npm run test:unit --workspaces --if-present",
     "test:end-to-end": "npm run test:end-to-end --workspaces --if-present",
-    "verify": "npm run verify:biome && npm run verify:types",
-    "verify:biome": "biome check",
-    "verify:types": "tsc --noEmit --project ./jsconfig.json"
+    "prepare": "husky || true"
   },
   "devDependencies": {
     "@commitlint/cli": "^20.5.3",
@@ -33,7 +32,7 @@
     "@rowanmanning/biome-config": "^3.1.0",
     "@types/node": "^25.9.5",
     "husky": "^9.1.7",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.1-rc"
   },
   "volta": {
     "node": "22.22.0"
