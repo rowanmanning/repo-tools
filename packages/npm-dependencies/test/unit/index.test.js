@@ -1,32 +1,18 @@
-'use strict';
+import assert from 'node:assert/strict';
+import { before, describe, it, mock } from 'node:test';
 
-const assert = require('node:assert/strict');
-const { before, describe, it, mock } = require('node:test');
+const getPackageWorkspaces = mock.fn(() => ['']);
+mock.module('@rowanmanning/npm-workspaces', { namedExports: { getPackageWorkspaces } });
+
+const packageJson = { fromObject: mock.fn((pkg) => pkg) };
+const packageLock = { fromObject: mock.fn((pkg) => pkg) };
+mock.module('@rowanmanning/package-json', {
+	namedExports: { packageJson, packageLock }
+});
+
+const subject = await import('../../index.js');
 
 describe('@rowanmanning/npm-dependencies', () => {
-	let getPackageWorkspaces;
-	let packageJson;
-	let packageLock;
-	let subject;
-
-	before(() => {
-		getPackageWorkspaces = mock.fn();
-		getPackageWorkspaces.mock.mockImplementation(() => ['']);
-		mock.module('@rowanmanning/npm-workspaces', {
-			namedExports: { getPackageWorkspaces }
-		});
-
-		packageJson = { fromObject: mock.fn() };
-		packageJson.fromObject.mock.mockImplementation((pkg) => pkg);
-		packageLock = { fromObject: mock.fn() };
-		packageLock.fromObject.mock.mockImplementation((pkg) => pkg);
-		mock.module('@rowanmanning/package-json', {
-			namedExports: { packageJson, packageLock }
-		});
-
-		subject = require('../..');
-	});
-
 	describe('.getPackageDependencies(pkg, options)', () => {
 		let pkg;
 		let returnValue;

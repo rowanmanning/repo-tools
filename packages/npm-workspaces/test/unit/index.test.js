@@ -1,20 +1,12 @@
-'use strict';
+import assert from 'node:assert/strict';
+import { before, describe, it, mock } from 'node:test';
 
-const assert = require('node:assert/strict');
-const { before, describe, it, mock } = require('node:test');
+const packageLock = { fromObject: mock.fn((pkg) => pkg) };
+mock.module('@rowanmanning/package-json', { namedExports: { packageLock } });
+
+const subject = await import('../../index.js');
 
 describe('@rowanmanning/npm-workspaces', () => {
-	let packageLock;
-	let subject;
-
-	before(() => {
-		packageLock = { fromObject: mock.fn() };
-		packageLock.fromObject.mock.mockImplementation((pkg) => pkg);
-		mock.module('@rowanmanning/package-json', { namedExports: { packageLock } });
-
-		subject = require('../..');
-	});
-
 	describe('.getPackageWorkspaces(pkg)', () => {
 		let pkg;
 		let returnValue;

@@ -1,15 +1,11 @@
-'use strict';
+import possibleNodeVersions from './data/versions.json' with { type: 'json' };
 
-const possibleNodeVersions = require('./data/versions.json');
-const { getEnginesNodeVersions } = require('./lib/get-engines-node-versions.js');
-const { getPackageNodeVersions } = require('./lib/get-package-node-versions.js');
+export { getEnginesNodeVersions } from './lib/get-engines-node-versions.js';
+export { getPackageNodeVersions } from './lib/get-package-node-versions.js';
 
 /**
  * @import nodeVersions from '@rowanmanning/node-versions'
  */
 
 /** @type {nodeVersions['nodeVersions']} */
-exports.nodeVersions = Object.freeze(possibleNodeVersions);
-
-exports.getEnginesNodeVersions = getEnginesNodeVersions;
-exports.getPackageNodeVersions = getPackageNodeVersions;
+export const nodeVersions = Object.freeze(possibleNodeVersions);

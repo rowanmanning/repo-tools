@@ -1,13 +1,11 @@
-'use strict';
-
-const { getEnginesNodeVersions } = require('./get-engines-node-versions.js');
+import { getEnginesNodeVersions } from './get-engines-node-versions.js';
 
 /**
- * @import nodeVersions from '@rowanmanning/node-versions'
+ * @import { getPackageNodeVersions } from '@rowanmanning/node-versions'
  */
 
-/** @type {nodeVersions['getPackageNodeVersions']} */
-exports.getPackageNodeVersions = function getPackageNodeVersions(pkg, options) {
+/** @type {getPackageNodeVersions} */
+export function getPackageNodeVersions(pkg, options) {
 	/** @type {any} */
 	let engines;
 
@@ -22,4 +20,4 @@ exports.getPackageNodeVersions = function getPackageNodeVersions(pkg, options) {
 		return [];
 	}
 	return getEnginesNodeVersions(engines, options);
-};
+}

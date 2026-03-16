@@ -1,6 +1,7 @@
 {
   "name": "@rowanmanning/repo-tools",
   "version": "0.0.0",
+  "type": "module",
   "private": true,
   "description": "Various libraries to help with managing repos",
   "author": "Rowan Manning (https://rowanmanning.com/)",

@@ -1,6 +1,7 @@
 {
   "name": "@rowanmanning/node-versions",
   "version": "3.1.21",
+  "type": "module",
   "description": "Get the Node.js versions that a repo says it supports",
   "keywords": [],
   "author": "Rowan Manning (https://rowanmanning.com/)",

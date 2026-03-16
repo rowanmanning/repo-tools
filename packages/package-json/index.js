@@ -1,4 +1,2 @@
-'use strict';
-
-exports.packageJson = require('./lib/package-json');
-exports.packageLock = require('./lib/package-lock-json');
+export * as packageJson from './lib/package-json.js';
+export * as packageLock from './lib/package-lock-json.js';

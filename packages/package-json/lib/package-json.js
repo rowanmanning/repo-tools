@@ -1,14 +1,12 @@
-'use strict';
-
-const { join: joinPath } = require('node:path');
-const { readFile } = require('node:fs/promises');
+import { readFile } from 'node:fs/promises';
+import { join } from 'node:path';
 
 /**
  * @import { packageJson } from '@rowanmanning/package-json'
  */
 
 /** @type {packageJson['fromObject']} */
-exports.fromObject = function fromObject(packageObject) {
+export function fromObject(packageObject) {
 	try {
 		// Package.json root element must be an object "{}"
 		if (!packageObject || typeof packageObject !== 'object' || Array.isArray(packageObject)) {
@@ -28,15 +26,15 @@ exports.fromObject = function fromObject(packageObject) {
 		error.code = 'PACKAGE_JSON_INVALID';
 		throw error;
 	}
-};
+}
 
 /** @type {packageJson['fromString']} */
-exports.fromString = function fromString(jsonString) {
+export function fromString(jsonString) {
 	if (typeof jsonString !== 'string') {
 		throw new TypeError('Invalid argument: jsonString must be a string');
 	}
 	try {
-		return exports.fromObject(JSON.parse(jsonString));
+		return fromObject(JSON.parse(jsonString));
 	} catch (/** @type {any} */ error) {
 		let cause = error;
 		if (cause instanceof SyntaxError) {
@@ -45,15 +43,15 @@ exports.fromString = function fromString(jsonString) {
 		}
 		throw cause;
 	}
-};
+}
 
 /** @type {packageJson['fromFile']} */
-exports.fromFile = async function fromFile(path) {
+export async function fromFile(path) {
 	if (typeof path !== 'string') {
 		throw new TypeError('Invalid argument: path must be a string');
 	}
 	try {
-		return exports.fromString(await readFile(path, 'utf-8'));
+		return fromString(await readFile(path, 'utf-8'));
 	} catch (/** @type {any} */ error) {
 		let cause = error;
 		if (cause.code === 'ENOENT') {
@@ -66,12 +64,12 @@ exports.fromFile = async function fromFile(path) {
 		}
 		throw cause;
 	}
-};
+}
 
 /** @type {packageJson['fromDirectory']} */
-exports.fromDirectory = async function fromDirectory(path) {
+export async function fromDirectory(path) {
 	if (typeof path !== 'string') {
 		throw new TypeError('Invalid argument: path must be a string');
 	}
-	return await exports.fromFile(joinPath(path, 'package.json'));
-};
+	return await fromFile(join(path, 'package.json'));
+}

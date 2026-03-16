@@ -1,8 +1,7 @@
-'use strict';
+import { AssertionError } from 'node:assert';
+import assert from 'node:assert/strict';
+import { before, describe, it, mock } from 'node:test';
 
-const { afterEach, beforeEach, describe, it, mock } = require('node:test');
-const assert = require('node:assert/strict');
-const { AssertionError } = require('node:assert');
 mock.module('../../../package.json', {
 	defaultExport: {
 		name: 'mock-name',
@@ -11,26 +10,17 @@ mock.module('../../../package.json', {
 	}
 });
 
+const json = [{ version: '1.2.3' }, { version: '4.5.6' }];
+const response = { json: mock.fn(async () => json) };
+mock.method(global, 'fetch', async () => response);
+
+const subject = await import('../../../lib/fetch-node-versions.js');
+
 describe('@rowanmanning/node-versions/lib/fetch-node-versions', () => {
-	let json;
-	let response;
-	let subject;
-
-	beforeEach(() => {
-		json = [{ version: '1.2.3' }, { version: '4.5.6' }];
-		response = { json: mock.fn(async () => json) };
-		mock.method(global, 'fetch', async () => response);
-		subject = require('../../../lib/fetch-node-versions');
-	});
-
-	afterEach(() => {
-		global.fetch.mock.restore();
-	});
-
 	describe('.fetchNodeVersions(path)', () => {
 		let resolvedValue;
 
-		beforeEach(async () => {
+		before(async () => {
 			resolvedValue = await subject.fetchNodeVersions();
 		});
 
@@ -51,9 +41,9 @@ describe('@rowanmanning/node-versions/lib/fetch-node-versions', () => {
 			let fetchError;
 			let rejectedError;
 
-			beforeEach(async () => {
+			before(async () => {
 				fetchError = new Error('mock fetch error');
-				global.fetch.mock.mockImplementation(() => {
+				global.fetch.mock.mockImplementationOnce(() => {
 					throw fetchError;
 				});
 				try {
@@ -72,9 +62,9 @@ describe('@rowanmanning/node-versions/lib/fetch-node-versions', () => {
 			let jsonError;
 			let rejectedError;
 
-			beforeEach(async () => {
+			before(async () => {
 				jsonError = new Error('mock json error');
-				response.json.mock.mockImplementation(() => {
+				response.json.mock.mockImplementationOnce(() => {
 					throw jsonError;
 				});
 				try {
@@ -92,8 +82,8 @@ describe('@rowanmanning/node-versions/lib/fetch-node-versions', () => {
 		describe('when the JSON is not an array', () => {
 			let rejectedError;
 
-			beforeEach(async () => {
-				response.json.mock.mockImplementation(() => ({ notAnArray: true }));
+			before(async () => {
+				response.json.mock.mockImplementationOnce(() => ({ notAnArray: true }));
 				try {
 					await subject.fetchNodeVersions();
 				} catch (error) {
@@ -110,8 +100,8 @@ describe('@rowanmanning/node-versions/lib/fetch-node-versions', () => {
 		describe('when the items in the JSON array are not all objects', () => {
 			let rejectedError;
 
-			beforeEach(async () => {
-				response.json.mock.mockImplementation(() => [{ version: '1.2.3' }, null]);
+			before(async () => {
+				response.json.mock.mockImplementationOnce(() => [{ version: '1.2.3' }, null]);
 				try {
 					await subject.fetchNodeVersions();
 				} catch (error) {
@@ -128,8 +118,8 @@ describe('@rowanmanning/node-versions/lib/fetch-node-versions', () => {
 		describe('when items in the JSON array have non-string version properties', () => {
 			let rejectedError;
 
-			beforeEach(async () => {
-				response.json.mock.mockImplementation(() => [
+			before(async () => {
+				response.json.mock.mockImplementationOnce(() => [
 					{ version: '1.2.3' },
 					{ version: [] }
 				]);

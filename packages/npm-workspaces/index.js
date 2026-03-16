@@ -1,13 +1,11 @@
-'use strict';
-
-const { packageLock } = require('@rowanmanning/package-json');
+import { packageLock } from '@rowanmanning/package-json';
 
 /**
  * @import npmWorkspaces from '@rowanmanning/npm-workspaces'
  */
 
 /** @type {npmWorkspaces['getPackageWorkspaces']} */
-exports.getPackageWorkspaces = function getPackageWorkspaces(pkg) {
+export function getPackageWorkspaces(pkg) {
 	const lockfile = packageLock.fromObject(pkg);
 	if (lockfile.lockfileVersion === 2 || lockfile.lockfileVersion === 3) {
 		if (
@@ -20,4 +18,4 @@ exports.getPackageWorkspaces = function getPackageWorkspaces(pkg) {
 		return Object.keys(lockfile.packages).filter((key) => !key.includes('node_modules/'));
 	}
 	throw new TypeError('Invalid argument: pkg is a lockfile other than v2 or v3');
-};
+}

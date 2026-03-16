@@ -36,8 +36,6 @@ Load into your code with `import` or `require`:
 
 ```js
 import { packageJson, packageLock } from '@rowanmanning/package-json';
-// or
-const { packageJson, packageLock } = require('@rowanmanning/package-json');
 ```
 
 The following exports are available.

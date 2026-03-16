@@ -1,7 +1,5 @@
-'use strict';
-
-const assert = require('node:assert/strict');
-const pkg = require('../package.json');
+import assert from 'node:assert/strict';
+import pkg from '../package.json' with { type: 'json' };
 
 const versionsEndpoint = 'https://nodejs.org/dist/index.json';
 const userAgent = `npm:${pkg.name}/${pkg.version} (${pkg.homepage})`;
@@ -9,7 +7,7 @@ const userAgent = `npm:${pkg.name}/${pkg.version} (${pkg.homepage})`;
 /**
  * @returns {Promise<string[]>}
  */
-exports.fetchNodeVersions = async function fetchNodeVersions() {
+export async function fetchNodeVersions() {
 	const response = await fetch(versionsEndpoint, {
 		headers: { 'user-agent': userAgent }
 	});
@@ -29,4 +27,4 @@ exports.fetchNodeVersions = async function fetchNodeVersions() {
 	}
 
 	return versions.map(({ version }) => version);
-};
+}

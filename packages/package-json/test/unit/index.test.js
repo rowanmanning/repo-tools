@@ -1,32 +1,26 @@
-'use strict';
+import assert from 'node:assert/strict';
+import { describe, it, mock } from 'node:test';
 
-const assert = require('node:assert/strict');
-const { before, describe, it, mock } = require('node:test');
+mock.module('../../lib/package-json.js', {
+	namedExports: { mockProperty: 'mock-package-json-method' }
+});
 
-describe('@rowanmanning/package-json', () => {
-	let packageJson;
-	let packageLock;
-	let subject;
+mock.module('../../lib/package-lock-json.js', {
+	namedExports: { mockProperty: 'mock-package-lock-json-method' }
+});
 
-	before(() => {
-		packageJson = 'mock-package-json';
-		packageLock = 'mock-package-lock-json';
+const subject = await import('../../index.js');
 
-		mock.module('../../lib/package-json.js', { defaultExport: packageJson });
-		mock.module('../../lib/package-lock-json.js', { defaultExport: packageLock });
-
-		subject = require('../..');
-	});
-
+describe('@rowanmanning/package-json-github', () => {
 	describe('.packageJson', () => {
 		it('is aliases lib/package-json', () => {
-			assert.equal(subject.packageJson, packageJson);
+			assert.deepEqual(subject.packageJson.mockProperty, 'mock-package-json-method');
 		});
 	});
 
 	describe('.packageLock', () => {
 		it('is aliases lib/package-lock-json', () => {
-			assert.equal(subject.packageLock, packageLock);
+			assert.deepEqual(subject.packageLock.mockProperty, 'mock-package-lock-json-method');
 		});
 	});
 });
