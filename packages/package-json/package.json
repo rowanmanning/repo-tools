@@ -1,6 +1,7 @@
 {
   "name": "@rowanmanning/package-json",
   "version": "2.1.0",
+  "type": "module",
   "description": "Load and parse package.json and package-lock.json files",
   "keywords": [],
   "author": "Rowan Manning (https://rowanmanning.com/)",

@@ -1,10 +1,8 @@
-'use strict';
+import { writeFile } from 'node:fs/promises';
+import { resolve } from 'node:path';
+import { fetchNodeVersions } from '../lib/fetch-node-versions.js';
 
-const { writeFile } = require('node:fs/promises');
-const { resolve: resolvePath } = require('node:path');
-const { fetchNodeVersions } = require('../lib/fetch-node-versions');
-
-const filePath = resolvePath(__dirname, '..', 'data', 'versions.json');
+const filePath = resolve(import.meta.dirname, '..', 'data', 'versions.json');
 
 async function runScript() {
 	const versions = await fetchNodeVersions();

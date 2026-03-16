@@ -1,14 +1,12 @@
-'use strict';
-
-const possibleNodeVersions = require('../data/versions.json');
-const semver = require('semver');
+import semver from 'semver';
+import possibleNodeVersions from '../data/versions.json' with { type: 'json' };
 
 /**
- * @import nodeVersions from '@rowanmanning/node-versions'
+ * @import { getEnginesNodeVersions } from '@rowanmanning/node-versions'
  */
 
-/** @type {nodeVersions['getEnginesNodeVersions']} */
-exports.getEnginesNodeVersions = function getEnginesNodeVersions(engines, options = {}) {
+/** @type {getEnginesNodeVersions} */
+export function getEnginesNodeVersions(engines, options = {}) {
 	if (typeof engines !== 'string' || !semver.validRange(engines)) {
 		return [];
 	}
@@ -26,4 +24,4 @@ exports.getEnginesNodeVersions = function getEnginesNodeVersions(engines, option
 	}
 
 	return supportedNodeVersions;
-};
+}

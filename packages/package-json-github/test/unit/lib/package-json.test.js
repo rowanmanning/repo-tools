@@ -1,25 +1,17 @@
-'use strict';
+import assert from 'node:assert/strict';
+import { before, describe, it, mock } from 'node:test';
 
-const { before, describe, it, mock } = require('node:test');
-const assert = require('node:assert/strict');
+const fromString = mock.fn();
+mock.module('@rowanmanning/package-json', {
+	namedExports: { packageJson: { fromString } }
+});
+
+const getRepoContent = mock.fn();
+mock.module('../../../lib/github.js', { namedExports: { getRepoContent } });
+
+const subject = await import('../../../lib/package-json.js');
 
 describe('@rowanmanning/package-json-github/lib/package-json', () => {
-	let fromString;
-	let getRepoContent;
-	let subject;
-
-	before(() => {
-		fromString = mock.fn();
-		mock.module('@rowanmanning/package-json', {
-			namedExports: { packageJson: { fromString } }
-		});
-
-		getRepoContent = mock.fn();
-		mock.module('../../../lib/github.js', { namedExports: { getRepoContent } });
-
-		subject = require('../../../lib/package-json');
-	});
-
 	describe('.fromGitHubRepo(options)', () => {
 		let resolvedValue;
 

@@ -1,7 +1,5 @@
-'use strict';
-
-const assert = require('node:assert/strict');
-const { before, describe, it, mock } = require('node:test');
+import assert from 'node:assert/strict';
+import { before, describe, it, mock } from 'node:test';
 
 const nodeVersions = ['3.0.0', '2.1.0', '2.0.1', '2.0.0', '1.1.0', '1.0.0'];
 mock.module('../../../data/versions.json', { defaultExport: nodeVersions });
@@ -11,7 +9,7 @@ mock.module('../../../lib/get-engines-node-versions.js', {
 	namedExports: { getEnginesNodeVersions }
 });
 
-const { getPackageNodeVersions } = require('../../../lib/get-package-node-versions.js');
+const { getPackageNodeVersions } = await import('../../../lib/get-package-node-versions.js');
 
 describe('@rowanmanning/node-versions/lib/get-engines-node-versions', () => {
 	describe('.getPackageNodeVersions(path, options)', () => {

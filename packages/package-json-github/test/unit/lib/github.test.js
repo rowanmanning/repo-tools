@@ -1,24 +1,19 @@
-'use strict';
+import assert from 'node:assert/strict';
+import { beforeEach, describe, it, mock } from 'node:test';
 
-const { before, beforeEach, describe, it, mock } = require('node:test');
-const assert = require('node:assert/strict');
+mock.method(global, 'fetch');
+
+mock.module('../../../package.json', {
+	defaultExport: {
+		name: 'mock-name',
+		version: 'mock-version',
+		homepage: 'mock-homepage'
+	}
+});
+
+const subject = await import('../../../lib/github.js');
 
 describe('@rowanmanning/package-json-github/lib/github', () => {
-	let subject;
-
-	before(() => {
-		mock.method(global, 'fetch');
-		mock.module('../../../package.json', {
-			defaultExport: {
-				name: 'mock-name',
-				version: 'mock-version',
-				homepage: 'mock-homepage'
-			}
-		});
-
-		subject = require('../../../lib/github');
-	});
-
 	describe('.getRepoContent(options)', () => {
 		let resolvedValue;
 		let response;

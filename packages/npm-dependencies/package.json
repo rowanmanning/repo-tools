@@ -1,6 +1,7 @@
 {
   "name": "@rowanmanning/npm-dependencies",
   "version": "2.1.0",
+  "type": "module",
   "description": "Get a list of all the dependencies found in a package file",
   "keywords": [],
   "author": "Rowan Manning (https://rowanmanning.com/)",
