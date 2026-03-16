@@ -1,14 +1,17 @@
-'use strict';
+import assert from 'node:assert/strict';
+import { readdirSync } from 'node:fs';
+import { join } from 'node:path';
+import { describe, it } from 'node:test';
+import { getPackageDependencies } from '../../index.js';
 
-const assert = require('node:assert/strict');
-const { describe, it } = require('node:test');
-const { getPackageDependencies } = require('../..');
-const { join } = require('node:path');
-const { readdirSync } = require('node:fs');
-
-const testCasesFolder = join(__dirname, 'test-cases');
-const testCases = readdirSync(testCasesFolder).map((filePath) =>
-	require(join(testCasesFolder, filePath))
+const testCasesFolder = join(import.meta.dirname, 'test-cases');
+const testCases = await Promise.all(
+	readdirSync(testCasesFolder).map(async (filePath) => {
+		const { default: json } = await import(join(testCasesFolder, filePath), {
+			with: { type: 'json' }
+		});
+		return json;
+	})
 );
 
 describe('@rowanmanning/npm-dependencies (end-to-end)', () => {

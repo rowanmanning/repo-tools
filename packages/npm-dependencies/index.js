@@ -1,7 +1,5 @@
-'use strict';
-
-const { getPackageWorkspaces } = require('@rowanmanning/npm-workspaces');
-const { packageJson, packageLock } = require('@rowanmanning/package-json');
+import { getPackageWorkspaces } from '@rowanmanning/npm-workspaces';
+import { packageJson, packageLock } from '@rowanmanning/package-json';
 
 /**
  * @import npmDependencies from '@rowanmanning/npm-dependencies'
@@ -40,7 +38,7 @@ const dependencyProperties = [
 ];
 
 /** @type {npmDependencies['getPackageDependencies']} */
-exports.getPackageDependencies = function getPackageDependencies(pkg, userOptions) {
+export function getPackageDependencies(pkg, userOptions) {
 	const options = validateOptions(userOptions);
 	if (typeof pkg.lockfileVersion === 'number') {
 		const lockfile = packageLock.fromObject(pkg);
@@ -50,20 +48,20 @@ exports.getPackageDependencies = function getPackageDependencies(pkg, userOption
 		throw new TypeError('Invalid argument: pkg is a lockfile other than v2 or v3');
 	}
 	return getPackageJsonDependencies(packageJson.fromObject(pkg));
-};
+}
 
 /** @type {npmDependencies['getAllWorkspaceDependencies']} */
-exports.getAllWorkspaceDependencies = function getAllWorkspaceDependencies(pkg) {
+export function getAllWorkspaceDependencies(pkg) {
 	return getPackageWorkspaces(pkg).map((workspace) => {
 		const workspacePackage = packageJson.fromObject(pkg.packages?.[workspace]);
 		return {
 			workspace,
 			name: workspacePackage.name,
 			version: workspacePackage.version,
-			dependencies: exports.getPackageDependencies(pkg, { workspace })
+			dependencies: getPackageDependencies(pkg, { workspace })
 		};
 	});
-};
+}
 
 /**
  * @param {PackageJson} pkg

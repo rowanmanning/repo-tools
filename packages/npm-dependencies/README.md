@@ -30,8 +30,6 @@ Load one of the methods into your code with `import` or `require`:
 
 ```js
 import { getPackageDependencies } from '@rowanmanning/npm-dependencies';
-// or
-const { getPackageDependencies } = require('@rowanmanning/npm-dependencies');
 ```
 
 The following exports are available.
@@ -64,9 +62,11 @@ The `options` argument is optional and can be used to change the way the method 
   * `workspace`: A `string` option defaulting to `""`. This is used to specify which workspace in a `package-lock.json` file to get dependencies for, defaulting to the root workspace. This option has no effect for `package.json` files.
 
 ```js
-const dependencies = getPackageDependencies(require('./package.json'));
+import packageJson from './package.json' with { type: 'json' };
+const dependencies = getPackageDependencies(packageJson);
 // or
-const dependencies = getPackageDependencies(require('./package-lock.json'));
+import packageLockJson from './package-lock.json' with { type: 'json' };
+const dependencies = getPackageDependencies(packageLockJson);
 ```
 
 ### `getAllWorkspaceDependencies()`
