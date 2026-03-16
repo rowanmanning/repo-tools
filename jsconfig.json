@@ -5,9 +5,8 @@
 		"declaration": true,
 		"declarationMap": true,
 		"maxNodeModuleJsDepth": 0,
-		"module": "commonjs",
+		"module": "nodenext",
 		"removeComments": true,
-		"resolveJsonModule": true,
 		"strictBindCallApply": true,
 		"strictFunctionTypes": true,
 		"strictNullChecks": true,
@@ -15,6 +14,6 @@
 		"target": "ES2023",
 		"useUnknownInCatchVariables": true
 	},
-	"exclude": ["coverage", "node_modules", "**/test"],
-	"include": ["**/*.js", "**/*.d.ts"]
+	"exclude": ["**/*.test.js", "node_modules"],
+	"include": ["**/*.js", "**/*.ts"]
 }

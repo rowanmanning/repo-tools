@@ -14,7 +14,7 @@ Get a list of all the npm workspaces found in a `package-lock.json` file.
 
 This library requires the following to run:
 
-  * [Node.js](https://nodejs.org/) 20+
+  * [Node.js](https://nodejs.org/) 22+
 
 
 ## Usage
@@ -29,8 +29,6 @@ Load one of the methods into your code with `import` or `require`:
 
 ```js
 import { getPackageWorkspaces } from '@rowanmanning/npm-workspaces';
-// or
-const { getPackageWorkspaces } = require('@rowanmanning/npm-workspaces');
 ```
 
 The following exports are available.
@@ -46,7 +44,8 @@ A function to list the npm workspaces that a `package-lock.json` file defines. T
 `PackageLock` must be a JavaScript object that is a valid `package-lock.json` or `package-lock.json` file. We recommend using [@rowanmanning/package-json](../package-json#readme) or [@npmcli/package-json](https://github.com/npm/package-json#readme).
 
 ```js
-const workspaces = getPackageWorkspaces(require('./package-lock.json'));
+import packageLockJson from './package-lock.json' with { type: 'json' };
+const workspaces = getPackageWorkspaces(packageLockJson);
 // ['', 'packages/example-1', 'packages/example-2']
 ```
 

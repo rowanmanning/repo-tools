@@ -1,18 +1,16 @@
-'use strict';
-
-const { name, version, homepage } = require('../package.json');
+import packageJson from '../package.json' with { type: 'json' };
 
 /**
  * @import { GitHubOptions } from '@rowanmanning/package-json-github'
  */
 
-const userAgent = `${name}/${version} (${homepage})`;
+const userAgent = `${packageJson.name}/${packageJson.version} (${packageJson.homepage})`;
 
 /**
  * @param {GitHubOptions & { path: string }} options
  * @returns {Promise<string>}
  */
-exports.getRepoContent = async function getRepoContent(options) {
+export async function getRepoContent(options) {
 	if (!options || typeof options !== 'object' || Array.isArray(options)) {
 		throw new TypeError('Invalid argument: options must be an object');
 	}
@@ -54,4 +52,4 @@ exports.getRepoContent = async function getRepoContent(options) {
 		);
 	}
 	return await response.text();
-};
+}

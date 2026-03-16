@@ -1,35 +1,29 @@
-'use strict';
+import assert from 'node:assert/strict';
+import { describe, it, mock } from 'node:test';
 
-const assert = require('node:assert/strict');
-const { afterEach, beforeEach, describe, it } = require('node:test');
-const quibble = require('quibble');
+mock.module('../../lib/package-json.js', {
+	namedExports: { fromGitHubRepo: 'mock-package-json-from-github' }
+});
+
+mock.module('../../lib/package-lock-json.js', {
+	namedExports: { fromGitHubRepo: 'mock-package-lock-json-from-github' }
+});
+
+const subject = await import('../../index.js');
 
 describe('@rowanmanning/package-json-github', () => {
-	let packageJson;
-	let packageLock;
-	let subject;
-
-	beforeEach(() => {
-		packageJson = 'mock-package-json';
-		packageLock = 'mock-package-lock-json';
-
-		quibble('../../lib/package-json', packageJson);
-		quibble('../../lib/package-lock-json', packageLock);
-
-		subject = require('../..');
-	});
-
-	afterEach(() => quibble.reset());
-
 	describe('.packageJson', () => {
 		it('is aliases lib/package-json', () => {
-			assert.equal(subject.packageJson, packageJson);
+			assert.deepEqual(subject.packageJson.fromGitHubRepo, 'mock-package-json-from-github');
 		});
 	});
 
 	describe('.packageLock', () => {
 		it('is aliases lib/package-lock-json', () => {
-			assert.equal(subject.packageLock, packageLock);
+			assert.deepEqual(
+				subject.packageLock.fromGitHubRepo,
+				'mock-package-lock-json-from-github'
+			);
 		});
 	});
 });

@@ -16,7 +16,7 @@ Get the Node.js versions that a repo says it supports.
 
 This library requires the following to run:
 
-  * [Node.js](https://nodejs.org/) 20+
+  * [Node.js](https://nodejs.org/) 22+
 
 
 ## Usage
@@ -31,8 +31,6 @@ Load one of the methods into your code with `import` or `require`:
 
 ```js
 import { nodeVersions } from '@rowanmanning/node-versions';
-// or
-const { nodeVersions } = require('@rowanmanning/node-versions');
 ```
 
 The following exports are available.
@@ -56,10 +54,12 @@ The `options` argument is optional and can be used to change the way the method 
   * `majorsOnly`: A `boolean` option defaulting to `false`. If this is set to `true` then the returned versions will have any minor/patch versions removed. E.g. `20.0.0` becomes `20`
 
 ```js
-const versions = getPackageNodeVersions(require('./package.json'));
+import packageJson from './package.json' with { type: 'json' };
+
+const versions = getPackageNodeVersions(packageJson);
 // ["v22.5.1", "v20.16.0", "v18.20.4", ...]
 
-const versions = await getPackageNodeVersions(require('./package.json'), { majorsOnly: true });
+const versions = await getPackageNodeVersions(packageJson, { majorsOnly: true });
 // ["22", "20", "18", ...]
 ```
 

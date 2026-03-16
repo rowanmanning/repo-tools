@@ -1,6 +1,7 @@
 {
   "name": "@rowanmanning/node-versions",
   "version": "3.1.21",
+  "type": "module",
   "description": "Get the Node.js versions that a repo says it supports",
   "keywords": [],
   "author": "Rowan Manning (https://rowanmanning.com/)",
@@ -13,14 +14,21 @@
   "bugs": "https://github.com/rowanmanning/repo-tools/issues",
   "license": "MIT",
   "engines": {
-    "node": "20.x || 22.x || 24.x"
+    "node": "22.x || 24.x"
   },
   "scripts": {
     "fetch-versions": "node ./scripts/fetch-node-versions.js",
-    "postinstall": "node ./scripts/fetch-node-versions.js || true"
+    "postinstall": "node ./scripts/fetch-node-versions.js || true",
+    "test": "npm run test:unit && npm run test:end-to-end",
+    "test:unit": "node --test --experimental-test-module-mocks --experimental-test-coverage --test-coverage-exclude '**/*.test.js' --test-coverage-branches=100 --test-coverage-functions=100 --test-coverage-lines=100 'test/unit/**/*.test.js'",
+    "test:end-to-end": "node --test 'test/end-to-end/**/*.test.js'"
   },
-  "main": "index.js",
-  "types": "index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./index.js"
+    }
+  },
   "dependencies": {
     "@rowanmanning/package-json": "^2.1.0",
     "semver": "^7.7.4"

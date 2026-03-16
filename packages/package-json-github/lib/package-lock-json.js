@@ -1,16 +1,12 @@
-'use strict';
-
-const { getRepoContent } = require('./github');
-const {
-	packageLock: { fromString }
-} = require('@rowanmanning/package-json');
+import { packageLock } from '@rowanmanning/package-json';
+import { getRepoContent } from './github.js';
 
 /**
- * @import { packageLock } from '@rowanmanning/package-json-github'
+ * @import { packageLock as packageLockGitHub } from '@rowanmanning/package-json-github'
  */
 
-/** @type {packageLock['fromGitHubRepo']} */
-exports.fromGitHubRepo = async function fromGitHubRepo(options) {
+/** @type {packageLockGitHub['fromGitHubRepo']} */
+export async function fromGitHubRepo(options) {
 	const optionsWithPath = Object.assign({ path: 'package-lock.json' }, options);
-	return fromString(await getRepoContent(optionsWithPath));
-};
+	return packageLock.fromString(await getRepoContent(optionsWithPath));
+}

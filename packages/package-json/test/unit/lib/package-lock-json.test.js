@@ -1,25 +1,12 @@
-'use strict';
+import assert from 'node:assert/strict';
+import { beforeEach, describe, it, mock } from 'node:test';
 
-const { afterEach, beforeEach, describe, it, mock } = require('node:test');
-const assert = require('node:assert/strict');
-const quibble = require('quibble');
+const readFile = mock.fn();
+mock.module('node:fs/promises', { namedExports: { readFile } });
+
+const subject = await import('../../../lib/package-lock-json.js');
 
 describe('@rowanmanning/package-json/lib/package-lock-json', () => {
-	let readFile;
-	let subject;
-
-	beforeEach(() => {
-		readFile = mock.fn();
-		quibble('node:fs/promises', { readFile });
-
-		subject = require('../../../lib/package-lock-json');
-	});
-
-	afterEach(() => {
-		quibble.reset();
-		mock.restoreAll();
-	});
-
 	describe('.fromObject(packageLock)', () => {
 		let mockJson;
 		let returnedValue;
@@ -86,29 +73,23 @@ describe('@rowanmanning/package-json/lib/package-lock-json', () => {
 
 		beforeEach(() => {
 			mockJson = { name: 'mock-name', version: 'mock-version', lockfileVersion: 3 };
-			mock.method(subject, 'fromObject', () => 'mock-json');
 			returnedValue = subject.fromString(JSON.stringify(mockJson));
 		});
 
-		it('calls `fromObject` with a parsed copy of the JSON string', () => {
-			assert.equal(subject.fromObject.mock.callCount(), 1);
-			assert.deepEqual(subject.fromObject.mock.calls.at(0).arguments, [mockJson]);
-		});
-
-		it('returns with the return value of `fromObject`', () => {
-			assert.equal(returnedValue, 'mock-json');
+		it('returns the parsed JSON', () => {
+			assert.deepEqual(returnedValue, mockJson);
 		});
 
 		describe('when `jsonString` is not a string', () => {
-			it('throws a type error', async () => {
+			it('throws a type error', () => {
 				assert.throws(() => subject.fromString(123), TypeError);
 			});
 		});
 
 		describe('when `jsonString` is not valid JSON', () => {
-			it('rejects with a descriptive error', async () => {
+			it('rejects with a descriptive error', () => {
 				try {
-					await subject.fromString('not-json');
+					subject.fromString('not-json');
 					assert.fail('Test should never reach this point');
 				} catch (error) {
 					assert.ok(error instanceof Error);
@@ -117,24 +98,16 @@ describe('@rowanmanning/package-json/lib/package-lock-json', () => {
 				}
 			});
 		});
-
-		describe('when `fromObject` errors', () => {
-			it('throws the error as-is', async () => {
-				const mockError = new Error('mock error');
-				subject.fromObject.mock.mockImplementation(() => {
-					throw mockError;
-				});
-				assert.throws(() => subject.fromString(JSON.stringify(mockJson)), mockError);
-			});
-		});
 	});
 
 	describe('.fromFile(path)', () => {
+		let mockJson;
 		let resolvedValue;
 
 		beforeEach(async () => {
-			readFile.mock.mockImplementation(() => Promise.resolve('mock-file-contents'));
-			mock.method(subject, 'fromString', () => 'mock-json');
+			mockJson = { name: 'mock-name', version: 'mock-version', lockfileVersion: 3 };
+			readFile.mock.resetCalls();
+			readFile.mock.mockImplementation(() => Promise.resolve(JSON.stringify(mockJson)));
 			resolvedValue = await subject.fromFile('mock-path');
 		});
 
@@ -143,13 +116,8 @@ describe('@rowanmanning/package-json/lib/package-lock-json', () => {
 			assert.deepEqual(readFile.mock.calls.at(0).arguments, ['mock-path', 'utf-8']);
 		});
 
-		it('calls `fromString` with the result of the file read', () => {
-			assert.equal(subject.fromString.mock.callCount(), 1);
-			assert.deepEqual(subject.fromString.mock.calls.at(0).arguments, ['mock-file-contents']);
-		});
-
-		it('resolves with the resolved value of `fromString`', () => {
-			assert.equal(resolvedValue, 'mock-json');
+		it('resolves with the file contents parsed as JSON', () => {
+			assert.deepEqual(resolvedValue, mockJson);
 		});
 
 		describe('when `path` is not a string', () => {
@@ -197,33 +165,29 @@ describe('@rowanmanning/package-json/lib/package-lock-json', () => {
 				}
 			});
 		});
-
-		describe('when `fromString` errors', () => {
-			it('rejects with the error as-is', async () => {
-				const mockError = new Error('mock error');
-				subject.fromString.mock.mockImplementation(() => Promise.reject(mockError));
-				assert.rejects(() => subject.fromFile('mock-path'), mockError);
-			});
-		});
 	});
 
 	describe('.fromDirectory(path)', () => {
+		let mockJson;
 		let resolvedValue;
 
 		beforeEach(async () => {
-			mock.method(subject, 'fromFile', () => Promise.resolve('mock-json'));
+			mockJson = { name: 'mock-name', version: 'mock-version', lockfileVersion: 3 };
+			readFile.mock.resetCalls();
+			readFile.mock.mockImplementation(() => Promise.resolve(JSON.stringify(mockJson)));
 			resolvedValue = await subject.fromDirectory('mock-path');
 		});
 
-		it('calls `fromFile` for the package-lock.json file within the directory', () => {
-			assert.equal(subject.fromFile.mock.callCount(), 1);
-			assert.deepEqual(subject.fromFile.mock.calls.at(0).arguments, [
-				'mock-path/package-lock.json'
+		it('reads the file at the given path', () => {
+			assert.equal(readFile.mock.callCount(), 1);
+			assert.deepEqual(readFile.mock.calls.at(0).arguments, [
+				'mock-path/package-lock.json',
+				'utf-8'
 			]);
 		});
 
-		it('resolves with the resolved value of `fromFile`', () => {
-			assert.equal(resolvedValue, 'mock-json');
+		it('resolves with the file contents parsed as JSON', () => {
+			assert.deepEqual(resolvedValue, mockJson);
 		});
 
 		describe('when `path` is not a string', () => {
@@ -232,11 +196,43 @@ describe('@rowanmanning/package-json/lib/package-lock-json', () => {
 			});
 		});
 
-		describe('when `fromFile` errors', () => {
+		describe('when `readFile` errors', () => {
 			it('rejects with the error as-is', async () => {
 				const mockError = new Error('mock error');
-				subject.fromFile.mock.mockImplementation(() => Promise.reject(mockError));
+				readFile.mock.mockImplementation(() => Promise.reject(mockError));
 				assert.rejects(() => subject.fromDirectory('mock-path'), mockError);
+			});
+		});
+
+		describe('when `readFile` errors with an "ENOENT" code', () => {
+			it('rejects with a descriptive error', async () => {
+				const mockError = new Error('mock error');
+				mockError.code = 'ENOENT';
+				readFile.mock.mockImplementation(() => Promise.reject(mockError));
+				try {
+					await subject.fromDirectory('mock-path');
+					assert.fail('Test should never reach this point');
+				} catch (error) {
+					assert.ok(error instanceof Error);
+					assert.equal(error.code, 'PACKAGE_LOCK_JSON_NOT_FOUND');
+					assert.equal(error.cause, mockError);
+				}
+			});
+		});
+
+		describe('when `readFile` errors with an "EISDIR" code', () => {
+			it('rejects with a descriptive error', async () => {
+				const mockError = new Error('mock error');
+				mockError.code = 'EISDIR';
+				readFile.mock.mockImplementation(() => Promise.reject(mockError));
+				try {
+					await subject.fromDirectory('mock-path');
+					assert.fail('Test should never reach this point');
+				} catch (error) {
+					assert.ok(error instanceof Error);
+					assert.equal(error.code, 'PACKAGE_LOCK_JSON_NOT_FOUND');
+					assert.equal(error.cause, mockError);
+				}
 			});
 		});
 	});

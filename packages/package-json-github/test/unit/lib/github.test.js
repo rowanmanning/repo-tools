@@ -1,28 +1,19 @@
-'use strict';
+import assert from 'node:assert/strict';
+import { beforeEach, describe, it, mock } from 'node:test';
 
-const { afterEach, beforeEach, describe, it, mock } = require('node:test');
-const assert = require('node:assert/strict');
-const quibble = require('quibble');
+mock.method(global, 'fetch');
+
+mock.module('../../../package.json', {
+	defaultExport: {
+		name: 'mock-name',
+		version: 'mock-version',
+		homepage: 'mock-homepage'
+	}
+});
+
+const subject = await import('../../../lib/github.js');
 
 describe('@rowanmanning/package-json-github/lib/github', () => {
-	let subject;
-
-	beforeEach(() => {
-		mock.method(global, 'fetch');
-		quibble('../../../package.json', {
-			name: 'mock-name',
-			version: 'mock-version',
-			homepage: 'mock-homepage'
-		});
-
-		subject = require('../../../lib/github');
-	});
-
-	afterEach(() => {
-		quibble.reset();
-		mock.restoreAll();
-	});
-
 	describe('.getRepoContent(options)', () => {
 		let resolvedValue;
 		let response;

@@ -16,7 +16,7 @@ Load and parse `package.json` and `package-lock.json` files from GitHub reposito
 
 This library requires the following to run:
 
-  * [Node.js](https://nodejs.org/) 20+
+  * [Node.js](https://nodejs.org/) 22+
 
 
 ## Usage
@@ -31,8 +31,6 @@ Load into your code with `import` or `require`:
 
 ```js
 import { packageJson, packageLock } from '@rowanmanning/package-json-github';
-// or
-const { packageJson, packageLock } = require('@rowanmanning/package-json-github');
 ```
 
 The following exports are available.

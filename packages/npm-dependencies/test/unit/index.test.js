@@ -1,37 +1,24 @@
-'use strict';
+import assert from 'node:assert/strict';
+import { before, describe, it, mock } from 'node:test';
 
-const assert = require('node:assert/strict');
-const { afterEach, beforeEach, describe, it, mock } = require('node:test');
-const quibble = require('quibble');
+const getPackageWorkspaces = mock.fn(() => ['']);
+mock.module('@rowanmanning/npm-workspaces', { namedExports: { getPackageWorkspaces } });
+
+const packageJson = { fromObject: mock.fn((pkg) => pkg) };
+const packageLock = { fromObject: mock.fn((pkg) => pkg) };
+mock.module('@rowanmanning/package-json', {
+	namedExports: { packageJson, packageLock }
+});
+
+const subject = await import('../../index.js');
 
 describe('@rowanmanning/npm-dependencies', () => {
-	let getPackageWorkspaces;
-	let packageJson;
-	let packageLock;
-	let subject;
-
-	beforeEach(() => {
-		getPackageWorkspaces = mock.fn();
-		getPackageWorkspaces.mock.mockImplementation(() => ['']);
-		quibble('@rowanmanning/npm-workspaces', { getPackageWorkspaces });
-
-		packageJson = { fromObject: mock.fn() };
-		packageJson.fromObject.mock.mockImplementation((pkg) => pkg);
-		packageLock = { fromObject: mock.fn() };
-		packageLock.fromObject.mock.mockImplementation((pkg) => pkg);
-		quibble('@rowanmanning/package-json', { packageJson, packageLock });
-
-		subject = require('../..');
-	});
-
-	afterEach(() => quibble.reset());
-
 	describe('.getPackageDependencies(pkg, options)', () => {
 		let pkg;
 		let returnValue;
 
 		describe('when the package is a package.json file', () => {
-			beforeEach(() => {
+			before(() => {
 				pkg = {
 					name: 'mock-package',
 					version: 'mock-package-version',
@@ -351,7 +338,7 @@ describe('@rowanmanning/npm-dependencies', () => {
 		});
 
 		describe('when the package is a v2 package-lock.json file', () => {
-			beforeEach(() => {
+			before(() => {
 				pkg = {
 					lockfileVersion: 2,
 					name: 'mock-package-lock',
@@ -700,7 +687,7 @@ describe('@rowanmanning/npm-dependencies', () => {
 		let returnValue;
 
 		describe('when the package is a v2 package-lock.json file', () => {
-			beforeEach(() => {
+			before(() => {
 				pkg = {
 					lockfileVersion: 2,
 					name: 'mock-package-lock',

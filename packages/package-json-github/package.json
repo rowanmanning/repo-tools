@@ -1,6 +1,7 @@
 {
   "name": "@rowanmanning/package-json-github",
   "version": "2.1.0",
+  "type": "module",
   "description": "Load and parse package.json and package-lock.json files from GitHub repositories",
   "keywords": [],
   "author": "Rowan Manning (https://rowanmanning.com/)",
@@ -13,10 +14,19 @@
   "bugs": "https://github.com/rowanmanning/repo-tools/issues",
   "license": "MIT",
   "engines": {
-    "node": "20.x || 22.x || 24.x"
+    "node": "22.x || 24.x"
   },
-  "main": "index.js",
-  "types": "index.d.ts",
+  "scripts": {
+    "test": "npm run test:unit && npm run test:end-to-end",
+    "test:unit": "node --test --experimental-test-module-mocks --experimental-test-coverage --test-coverage-exclude '**/*.test.js' --test-coverage-branches=100 --test-coverage-functions=100 --test-coverage-lines=100 'test/unit/**/*.test.js'",
+    "test:end-to-end": "node --test 'test/end-to-end/**/*.test.js'"
+  },
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./index.js"
+    }
+  },
   "dependencies": {
     "@rowanmanning/package-json": "^2.1.0"
   }
