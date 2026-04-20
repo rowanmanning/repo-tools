@@ -25,9 +25,9 @@
     "verify:types": "tsc --noEmit --project ./jsconfig.json"
   },
   "devDependencies": {
-    "@commitlint/cli": "^20.4.2",
+    "@commitlint/cli": "^20.5.0",
     "@commitlint/config-conventional": "^19.8.1",
-    "@rowanmanning/biome-config": "^3.0.1",
+    "@rowanmanning/biome-config": "^3.1.0",
     "@types/node": "^24.8.1",
     "husky": "^9.1.7",
     "nyc": "^17.1.0",
