@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.25](https://github.com/rowanmanning/repo-tools/compare/node-versions-v3.1.24...node-versions-v3.1.25) (2026-05-07)
+
+
+### Bug Fixes
+
+* update available Node.js versions ([c4748f6](https://github.com/rowanmanning/repo-tools/commit/c4748f6a9802b98e097e222a0328b8d014174674))
+
 ## [3.1.24](https://github.com/rowanmanning/repo-tools/compare/node-versions-v3.1.23...node-versions-v3.1.24) (2026-04-19)
 
 
