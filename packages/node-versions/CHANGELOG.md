@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.1.28](https://github.com/rowanmanning/repo-tools/compare/node-versions-v3.1.27...node-versions-v3.1.28) (2026-05-26)
+
+
+### Bug Fixes
+
+* bump semver from 7.7.4 to 7.8.1 ([c249ade](https://github.com/rowanmanning/repo-tools/commit/c249ade93bbff1a688f62adc6ef1978de716d895))
+* update available Node.js versions ([676e0a2](https://github.com/rowanmanning/repo-tools/commit/676e0a25f4daf9064af31a5aba08681a6500f936))
+
 ## [3.1.27](https://github.com/rowanmanning/repo-tools/compare/node-versions-v3.1.26...node-versions-v3.1.27) (2026-05-17)
 
 
