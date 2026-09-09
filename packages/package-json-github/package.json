@@ -1,6 +1,6 @@
 {
   "name": "@rowanmanning/package-json-github",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "type": "module",
   "description": "Load and parse package.json and package-lock.json files from GitHub repositories",
   "keywords": [],
@@ -30,6 +30,6 @@
   "types": "./index.d.ts",
   "main": "./index.js",
   "dependencies": {
-    "@rowanmanning/package-json": "^2.1.0"
+    "@rowanmanning/package-json": "^3.0.0"
   }
 }
