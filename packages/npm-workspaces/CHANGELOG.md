@@ -1,5 +1,29 @@
 # Changelog
 
+## [3.0.0](https://github.com/rowanmanning/repo-tools/compare/npm-workspaces-v2.1.0...npm-workspaces-v3.0.0) (2026-09-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* switch to ESM
+* drop Node.js 20
+
+### Miscellaneous Chores
+
+* drop Node.js 20 ([0996b43](https://github.com/rowanmanning/repo-tools/commit/0996b430d288788b748a225ec42af2a0cf9288ed))
+
+
+### Code Refactoring
+
+* switch to ESM ([1d6ad55](https://github.com/rowanmanning/repo-tools/commit/1d6ad55cfbb49d242859a87c4ea0330a029b0037))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @rowanmanning/package-json bumped from ^2.1.0 to ^3.0.0
+
 ## [2.1.0](https://github.com/rowanmanning/repo-tools/compare/npm-workspaces-v2.0.0...npm-workspaces-v2.1.0) (2025-05-21)
 
 

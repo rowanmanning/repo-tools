@@ -1,6 +1,6 @@
 {
   "name": "@rowanmanning/package-json",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "type": "module",
   "description": "Load and parse package.json and package-lock.json files",
   "keywords": [],
