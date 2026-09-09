@@ -1,12 +1,14 @@
 import semver from 'semver';
 import possibleNodeVersions from '../data/versions.json' with { type: 'json' };
 
-/**
- * @import { getEnginesNodeVersions } from '@rowanmanning/node-versions'
- */
+export interface Options {
+	majorsOnly?: boolean | undefined;
+}
 
-/** @type {getEnginesNodeVersions} */
-export function getEnginesNodeVersions(engines, options = {}) {
+/**
+ * Get supported Node.js versions from a valid package.json "engines" string.
+ */
+export function getEnginesNodeVersions(engines: string, options: Options = {}) {
 	if (typeof engines !== 'string' || !semver.validRange(engines)) {
 		return [];
 	}

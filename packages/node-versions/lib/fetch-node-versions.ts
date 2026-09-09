@@ -4,9 +4,6 @@ import pkg from '../package.json' with { type: 'json' };
 const versionsEndpoint = 'https://nodejs.org/dist/index.json';
 const userAgent = `npm:${pkg.name}/${pkg.version} (${pkg.homepage})`;
 
-/**
- * @returns {Promise<string[]>}
- */
 export async function fetchNodeVersions() {
 	const response = await fetch(versionsEndpoint, {
 		headers: { 'user-agent': userAgent }
@@ -26,5 +23,7 @@ export async function fetchNodeVersions() {
 		);
 	}
 
-	return versions.map(({ version }) => version);
+	// Slight hack here to cast version as a string, but it's because TypeScript
+	// can't infer the type desite us assertign it above
+	return versions.map(({ version }) => version as string);
 }

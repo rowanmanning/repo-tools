@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { getPackageNodeVersions } from '../../index.js';
+import { getPackageNodeVersions } from '../../index.ts';
 
 describe('@rowanmanning/node-versions (end-to-end)', () => {
 	describe('package-invalid-engines-array.json', () => {
@@ -21,6 +21,7 @@ describe('@rowanmanning/node-versions (end-to-end)', () => {
 			const { default: packageJson } = await import('./fixtures/package-invalid-null.json', {
 				with: { type: 'json' }
 			});
+			// @ts-expect-error tests runtime errors with various potentially-invalid files
 			const engines = getPackageNodeVersions(packageJson, { majorsOnly: true });
 			assert.deepEqual(engines, []);
 		});
@@ -31,6 +32,7 @@ describe('@rowanmanning/node-versions (end-to-end)', () => {
 			const { default: packageJson } = await import('./fixtures/package-lock-v1.json', {
 				with: { type: 'json' }
 			});
+			// @ts-expect-error tests runtime errors with various potentially-invalid files
 			const engines = getPackageNodeVersions(packageJson, {
 				majorsOnly: true
 			});
@@ -43,6 +45,7 @@ describe('@rowanmanning/node-versions (end-to-end)', () => {
 			const { default: packageJson } = await import('./fixtures/package-lock-v2.json', {
 				with: { type: 'json' }
 			});
+			// @ts-expect-error tests runtime errors with various potentially-invalid files
 			const engines = getPackageNodeVersions(packageJson, {
 				majorsOnly: true
 			});
@@ -55,6 +58,7 @@ describe('@rowanmanning/node-versions (end-to-end)', () => {
 			const { default: packageJson } = await import('./fixtures/package-lock-v3.json', {
 				with: { type: 'json' }
 			});
+			// @ts-expect-error tests runtime errors with various potentially-invalid files
 			const engines = getPackageNodeVersions(packageJson, {
 				majorsOnly: true
 			});

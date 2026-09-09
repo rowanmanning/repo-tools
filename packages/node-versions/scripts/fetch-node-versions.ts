@@ -1,8 +1,8 @@
 import { writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
-import { fetchNodeVersions } from '../lib/fetch-node-versions.js';
+import { fetchNodeVersions } from '../lib/fetch-node-versions.ts';
 
-const filePath = resolve(import.meta.dirname, '..', 'data', 'versions.json');
+const filePath = resolve(import.meta.dirname, '..', 'dist', 'data', 'versions.json');
 
 async function runScript() {
 	const versions = await fetchNodeVersions();

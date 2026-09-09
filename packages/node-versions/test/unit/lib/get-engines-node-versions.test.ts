@@ -11,7 +11,7 @@ const semver = {
 };
 mock.module('semver', { defaultExport: semver });
 
-const { getEnginesNodeVersions } = await import('../../../lib/get-engines-node-versions.js');
+const { getEnginesNodeVersions } = await import('../../../lib/get-engines-node-versions.ts');
 
 describe('@rowanmanning/node-versions/lib/get-engines-node-versions', () => {
 	describe('.getEnginesNodeVersions(engines)', () => {

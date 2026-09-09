@@ -5,11 +5,11 @@ const nodeVersions = ['3.0.0', '2.1.0', '2.0.1', '2.0.0', '1.1.0', '1.0.0'];
 mock.module('../../../data/versions.json', { defaultExport: nodeVersions });
 
 const getEnginesNodeVersions = mock.fn(() => 'mock-engines-node-versions');
-mock.module('../../../lib/get-engines-node-versions.js', {
+mock.module('../../../lib/get-engines-node-versions.ts', {
 	namedExports: { getEnginesNodeVersions }
 });
 
-const { getPackageNodeVersions } = await import('../../../lib/get-package-node-versions.js');
+const { getPackageNodeVersions } = await import('../../../lib/get-package-node-versions.ts');
 
 describe('@rowanmanning/node-versions/lib/get-engines-node-versions', () => {
 	describe('.getPackageNodeVersions(path, options)', () => {

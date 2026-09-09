@@ -14,7 +14,7 @@ const json = [{ version: '1.2.3' }, { version: '4.5.6' }];
 const response = { json: mock.fn(async () => json) };
 mock.method(global, 'fetch', async () => response);
 
-const subject = await import('../../../lib/fetch-node-versions.js');
+const subject = await import('../../../lib/fetch-node-versions.ts');
 
 describe('@rowanmanning/node-versions/lib/fetch-node-versions', () => {
 	describe('.fetchNodeVersions(path)', () => {
