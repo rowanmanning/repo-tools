@@ -2,11 +2,11 @@ import type { AnyPackageLock, PackageJson } from '@rowanmanning/package-json';
 
 declare module '@rowanmanning/package-json-github' {
 	export type {
+		AnyPackageLock,
 		PackageJson,
 		PackageLockV1,
 		PackageLockV2,
-		PackageLockV3,
-		AnyPackageLock
+		PackageLockV3
 	} from '@rowanmanning/package-json';
 
 	export interface GitHubOptions {
