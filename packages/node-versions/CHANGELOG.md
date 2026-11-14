@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.1](https://github.com/rowanmanning/repo-tools/compare/node-versions-v4.0.0...node-versions-v4.0.1) (2026-11-14)
+
+
+### Bug Fixes
+
+* update available Node.js versions ([6809764](https://github.com/rowanmanning/repo-tools/commit/6809764d663019f514582995d5cf9c69cbe6c7d3))
+
 ## [4.0.0](https://github.com/rowanmanning/repo-tools/compare/node-versions-v3.1.28...node-versions-v4.0.0) (2026-09-09)
 
 
